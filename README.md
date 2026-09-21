@@ -14,5 +14,5 @@
   3. El filtrado por género: para facilitar la búsqueda según los gustos, queremos introducir una búsqueda por géneros de películas.
   4. Sistema de recomendaciones por estado de ánimo: nos gustaría agregar la posibilidad de elegir según lo que te apetezca en el momento.
   5. Posibilidad de crear listas de pelis/sistema de marcar como "ya visto".
-  6. 
+  6. Atributos para las películas: como características principales de las películas se tendrá en cuenta -> nombre, carátula, año de publicación, sinopsis, filtro de edad, idiomas, plataformas de streaming, etc.  
      
