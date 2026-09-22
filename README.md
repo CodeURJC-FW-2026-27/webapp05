@@ -8,7 +8,7 @@
 
 ## Idea principal:
   Primeramente vamos a explicar cuál es el significado de las siglas QVV. Estas siglas las hemos denominado como: Qué ver un viernes. El concepto nace de la idea de facilitar escoger una peli un viernes por la noche.
-  Conociendo la idea principal, vamos a dar los detalles de los elementos que tendrá nuestra página web:
+  Conociendo la idea principal, vamos a dar los detalles de las entidades y atributos de nuestra página web :
   1. La entidad principal: Película.
   2. La entidad secundaria: Participantes.
   3. El filtrado por género: Acción, comedias, romance, ciencia ficción, terror.
