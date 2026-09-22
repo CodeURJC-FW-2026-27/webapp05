@@ -1,12 +1,12 @@
 # Desarrollo de la web: Qvv
 
-|Desarrolladores:
+## Desarrolladores:
 - Marcos Calero Pelayo
 - Mario Gastelut Chorro
 - Samuel Nieto Bautista
 - Alejandro Bodas Navidad
 
-|Idea principal:
+## Idea principal:
   Primeramente vamos a explicar cuál es el significado de las siglas Qvv. Estas siglas las hemos denominado como: Qué ver un viernes. El concepto nace de la idea de facilitar escoger una peli un viernes por la noche.
   Conociendo la idea principal, vamos a dar los detalles de los elementos que tendrá nuestra página web:
   1. La entidad principal: repertorio de películas. Buscamos introducir un gran catálogo que se puedan adaptar a los gustos de las personas.
