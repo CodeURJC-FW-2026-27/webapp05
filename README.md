@@ -1,10 +1,10 @@
 # Desarrollo de la web: Qvv
 
 ## Desarrolladores:
-- Marcos Calero Pelayo  (m.calero.2025@alumnos.urjc.es)   (MCAlero1950)
+- Marcos Calero Pelayo  (m.calero.2025@alumnos.urjc.es)   (MCalero1950)
 - Mario Gastelut Chorro (m.gastelut.2025@alumnos.urjc.es) (gasmarius)
 - Samuel Nieto Bautista
-- Alejandro Bodas Navidad
+- Alejandro Bodas Navidad (a.bodas.2025@alumnos.urjc.es) (Boditasssss)
 
 ## Idea principal:
   Primeramente vamos a explicar cuál es el significado de las siglas Qvv. Estas siglas las hemos denominado como: Qué ver un viernes. El concepto nace de la idea de facilitar escoger una peli un viernes por la noche.
