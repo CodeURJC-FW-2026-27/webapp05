@@ -11,15 +11,15 @@
   Conociendo la idea principal, vamos a dar los detalles de los elementos que tendrá nuestra página web:
   1. La entidad principal: Película.
   2. La entidad secundaria: Participantes.
-  3. El filtrado por género: acción, comedias, romance, ciencia ficción, terror.
+  3. El filtrado por género: Acción, comedias, romance, ciencia ficción, terror.
   4. Atributos para las películas:
-     - nombre (string)
-     - carátula (jpg)
-     - año de publicación (integer)
-     - sinopsis (string)
-     - filtro de edad (integer)
-     - idiomas (string)
-     - plataformas de streaming (string)
+     - Nombre (string)
+     - Carátula (jpg)
+     - Año de publicación (integer)
+     - Sinopsis (string)
+     - Filtro de edad (integer)
+     - Idiomas (string)
+     - Plataformas de streaming (string)
      - Duración (string)
   5. Atributos participantes:
      - Nombre actor (string)
