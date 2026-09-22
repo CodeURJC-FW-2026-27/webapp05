@@ -13,17 +13,17 @@
   2. La entidad secundaria: Participantes.
   3. El filtrado por género: Acción, comedias, romance, ciencia ficción, terror.
   4. Atributos para las películas:
-     - Nombre (string)
-     - Carátula (jpg)
-     - Año de publicación (integer)
-     - Sinopsis (string)
-     - Filtro de edad (integer)
-     - Idiomas (string)
-     - Plataformas de streaming (string)
-     - Duración (string)
+     - Nombre (string).
+     - Carátula (jpg).
+     - Año de publicación (integer).
+     - Sinopsis (string).
+     - Filtro de edad (integer).
+     - Idiomas (string).
+     - Plataformas de streaming (string).
+     - Duración (string).
   5. Atributos participantes:
-     - Nombre actor (string)
-     - Nombre personaje (string)
-     - Edad (integer)
-     - Género (char)
+     - Nombre actor (string).
+     - Nombre personaje (string).
+     - Edad (integer).
+     - Género (char).
             
