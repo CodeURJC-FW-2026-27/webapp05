@@ -2,7 +2,7 @@
 
 ## Desarrolladores:
 - Marcos Calero Pelayo
-- Mario Gastelut Chorro
+- Mario Gastelut Chorro (m.gastelut.2025@alumnos.urjc.es) (gasmarius)
 - Samuel Nieto Bautista
 - Alejandro Bodas Navidad
 
