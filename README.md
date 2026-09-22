@@ -3,7 +3,7 @@
 ## Desarrolladores:
 - Marcos Calero Pelayo  (m.calero.2025@alumnos.urjc.es)   (MCalero1950)
 - Mario Gastelut Chorro (m.gastelut.2025@alumnos.urjc.es) (gasmarius)
-- Samuel Nieto Bautista
+- Samuel Nieto Bautista (s.nietob.2025@alumnos.urjc.es) (SamuelN300)
 - Alejandro Bodas Navidad (a.bodas.2025@alumnos.urjc.es) (Boditasssss)
 
 ## Idea principal:
