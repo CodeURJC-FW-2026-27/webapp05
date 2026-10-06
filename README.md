@@ -27,6 +27,5 @@
      - Edad (integer).
      - Género (char).
 
-     Prueba de subida ¿FUNCIONA?
-     PRUEBA DE SUBIDA 2
+
             
