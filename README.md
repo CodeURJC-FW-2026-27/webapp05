@@ -26,4 +26,6 @@
      - Nombre personaje (string).
      - Edad (integer).
      - Género (char).
+
+     Prueba de subida ¿FUNCIONA?
             
