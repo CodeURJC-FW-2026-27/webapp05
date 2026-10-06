@@ -27,5 +27,5 @@
      - Edad (integer).
      - Género (char).
 
-         hola
+         
             
