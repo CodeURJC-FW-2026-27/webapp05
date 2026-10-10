@@ -10843,6 +10843,14 @@ header.masthead {
     border-color: rgb(148, 5, 5);
 }
 .lead{
-color: rgb(255,255,255)
-
+color: rgb(255,255,255);
+}
+.list-unstyled{
+color: rgb(255,255,255);
+}
+.card{
+color: rgb(255,255,255);
+}
+.fw-bolder{
+color: rgb(255,255,255);
 }
