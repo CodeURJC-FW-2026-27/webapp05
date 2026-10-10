@@ -10838,3 +10838,7 @@ header.masthead {
   background-position: center;
   background-repeat: no-repeat;
 }
+.boton-rojo:hover {
+    background-color: rgb(148, 5, 5);
+    border-color: rgb(148, 5, 5);
+}
