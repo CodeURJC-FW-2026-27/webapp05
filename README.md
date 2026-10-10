@@ -10,7 +10,7 @@
   En primer lugar, vamos a explicar cuál es el significado de las siglas QVV. Estas siglas las hemos denominado como: Qué ver un viernes. El concepto nace de la idea de facilitar escoger una peli un viernes por la noche.
   Conociendo la idea principal, vamos a dar los detalles de las entidades y atributos de nuestra página web :
   1. La entidad principal: Película.
-  2. La entidad secundaria: Participantes.
+  2. La entidad secundaria: Reseña.
   3. El filtrado por género: Acción, comedias, romance, ciencia ficción, terror.
   4. Atributos para las películas:
      - Nombre (string).
@@ -18,14 +18,14 @@
      - Año de publicación (integer).
      - Sinopsis (string).
      - Filtro de edad (integer).
-     - Idiomas (string).
      - Plataformas de streaming (string).
      - Duración (string).
-  5. Atributos participantes:
-     - Nombre actor (string).
-     - Nombre personaje (string).
-     - Edad (integer).
-     - Género (char).
+     - Actores (string).
+  5. Atributos reseñas:
+     - Autor Reseña (string).
+     - Contenido reseña (string).
+     - Estrellas (string).
+       
 
          
             
