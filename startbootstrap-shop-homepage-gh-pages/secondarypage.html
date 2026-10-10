@@ -84,6 +84,67 @@
                     </div>
                 </div>
             </div>
+            <hr class="my-5" />
+            <!--Second Entity-->
+            <div class = "row gx-4 gx-lg-5">
+              <div class = "col-lg-8 offset-lg-2">
+                <h3 class="fw-bolder mb-4">Community Review</h3>
+                <div class = "list-group mb-4">
+                    <!--review 1-->
+                    <div class="list-group-item d-flex justify-content-between align-items-start p-3">
+                     <div class = "ms-2 me-auto">
+                        <div class = "fw-bold">John Doe <span class="text-warning">★★★★★</span></div>
+                        The movie was a thrilling experience from start to finish. The plot twists kept me on the edge of my seat, and the acting was top-notch. Highly recommend!
+                     </div> 
+                     <div class="btn-group btn-group-sm">
+                        <button class="btn btn-outline-secondary" type="button">Edit</button>
+                        <button class="btn btn-outline-danger" type="button">Delete</button>
+                     </div>  
+                    </div>
+                    <!--review 2-->
+                    <div class="list-group-item d-flex justify-content-between align-items-start p-3">
+                     <div class = "ms-2 me-auto">
+                        <div class = "fw-bold">Justin <span class="text-warning">★★★★</span></div>
+                        You can't cook the cat Nikki!
+                     </div> 
+                     <div class="btn-group btn-group-sm">
+                        <button class="btn btn-outline-secondary" type="button">Edit</button>
+                        <button class="btn btn-outline-danger" type="button">Delete</button>
+                     </div>  
+                    </div> 
+                </div>
+                <!--Add Review Form-->
+                <div class="card bg-light p-4">
+                    <h4 class="card-title mb-3">Add a Review</h4>
+                    <form>
+                     <div class="mb-3">
+                        <label for="reviewerName" class="form-label">Your Name</label>
+                        <input type="text" class="form-control" id="reviewerName" placeholder="Enter your name" required />
+                        </div>
+                        <div class="mb-3">
+                        <label for="reviewText" class="form-label">Your Review</label>
+                        <select class="form-select mb-2" id="reviewRating" required>
+                            <option value="" disabled selected>Select a rating</option>
+                            <option value="1">1 Star</option>
+                            <option value="2">2 Stars</option>
+                            <option value="3">3 Stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="5">5 Stars</option>
+                        </select>
+
+                        </div>
+                     <div class="mb-3">
+                        <label for="reviewText" class="form-label">Your Review</label>
+                        <textarea class="form-control" id="reviewText" rows="3" placeholder="Write your review here..." required></textarea>
+                     </div>
+                        <button type="button" class="btn btn-primary">Submit Review</button>
+                    </form>
+                </div>
+              </div>
+
+
+            </div>
+
         </div>
         </section>
         <!-- Footer-->
