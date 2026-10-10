@@ -3770,7 +3770,7 @@ textarea.form-control-lg {
   padding-top: var(--bs-navbar-brand-padding-y);
   padding-bottom: var(--bs-navbar-brand-padding-y);
   margin-right: var(--bs-navbar-brand-margin-end);
-  margin-left: 1.5rem;
+  margin-left: 5.0rem;
   font-size: var(--bs-navbar-brand-font-size);
   color: var(--bs-navbar-brand-color);
   text-decoration: none;
@@ -3794,6 +3794,7 @@ textarea.form-control-lg {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+  margin-left: auto
 }
 .navbar-nav .show > .nav-link,
 .navbar-nav .nav-link.active {
@@ -3818,6 +3819,8 @@ textarea.form-control-lg {
   flex-basis: 100%;
   flex-grow: 1;
   align-items: center;
+  justify-content: flex-end;
+  margin-right: 4.0rem;
 }
 
 .navbar-toggler {
@@ -10828,4 +10831,10 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+header.masthead {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.pinimg.com/1200x/16/9c/f9/169cf9666ea12504f50b3b362a5c3816.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
