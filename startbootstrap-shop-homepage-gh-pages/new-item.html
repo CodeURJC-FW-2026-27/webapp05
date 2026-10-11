@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>new item</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="col-2 px-4 px-lg-5"><span class="navbar-brand">QVV 🧀🍿</span></div>
+        <div class="input-group px-4  mx-4 "></div>
+        <div class="container col-3 px-lg-5">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html"><i
+                                class="bi bi-house"></i></a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Header-->
+    <header class="masthead py-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Que Ver Un Viernes 🧀🍿</h1>
+        </div>
+        </div>
+    </header>
+    <!-- Section-->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+
+
+            <!--Second Entity-->
+            <div class="row gx-4 gx-lg-5">
+                <div class="col-lg-8 offset-lg-2">
+                    <h3 class="fw-bolder mb-4">Administration</h3>
+
+                    <!--Add Review Form-->
+                    <div class="card bg-light p-4">
+                        <h4 class="card-title mb-3">Add new movie </h4>
+                        <form>
+                            <div class="mb-3">
+                                <label for="movieName" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="movieName"
+                                    placeholder="Enter the movie name" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="movieYear" class="form-label">Year</label>
+                                <input type="date" class="form-control" id="movieYear"
+                                    placeholder="Enter the movie year" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="ageRating" class="form-label">Age rating</label>
+                                <select class="form-select mb-2" id="ageRating" required>
+                                    <option value="" disabled selected>Select Age Rating</option>
+                                    <option value="G">General audiences</option>
+                                    <option value="PG">Parental guidance</option>
+                                    <option value="PG-13">PG-13</option>
+                                    <option value="R">Restricted</option>
+                                    <option value="NC-17">NC-17</option>
+                                </select>
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="synopsis" class="form-label">Synopsis</label>
+                                <textarea class="form-control" id="synopsis" rows="3"
+                                    placeholder="Write the synopsis movie" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="platforms" class="form-label">Platforms</label>
+                                <select multiple class="form-select mb-2" id="platforms">
+                                    <option value="" disabled selected>Select Platforms</option>
+                                    <option value="Netflix">Netflix</option>
+                                    <option value="HBO">HBO</option>
+                                    <option value="Amazon">Amazon</option>
+                                    <option value="Rakuten">Rakuten</option>
+                                    <option value="Crunchy Roll">Crunchy Roll</option>
+                                </select>
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="duration" class="form-label">Duration</label>
+                                <input type="number" class="form-control" id="duration"
+                                    placeholder="Duration in minutes" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="actors" class="form-label">Actors</label>
+                                <textarea class="form-control" id="Actors" rows="3"
+                                    placeholder="Write the actors from the movie" required></textarea>
+                            </div>
+                            <button type="button" class="btn btn-primary">Save</button>
+                            <a class="btn btne btn-primary" href="index.html">Cancel</a>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </section>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Samuel Nieto, Mario Gastelut, Marcos Calero, Alejandro Bodas</p>
+
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>
