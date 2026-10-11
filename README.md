@@ -14,13 +14,15 @@
   3. El filtrado por género: Acción, comedias, romance, ciencia ficción, terror.
   4. Atributos para las películas:
      - Nombre (string).
-     - Carátula (jpg).
-     - Año de publicación (integer).
+     - Carátula (file).
+     - Año de publicación (date).
      - Sinopsis (string).
-     - Filtro de edad (integer).
+     - Filtro de edad (string).
      - Plataformas de streaming (string).
-     - Duración (string).
-     - Actores (string).
+     - Duración en minutos (number).
+     - Director (string)
+     - Actores (string)
+     - Genero (string).
   5. Atributos reseñas:
      - Autor Reseña (string).
      - Contenido reseña (string).
