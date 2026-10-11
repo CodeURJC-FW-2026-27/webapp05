@@ -88,13 +88,25 @@
                                 </select>
 
                             </div>
+                             <div class="mb-3">
+                                <label for="genre" class="form-label">Genre</label>
+                                <select class="form-select mb-2" id="genre" required>
+                                    <option value="" disabled selected>Select genre</option>
+                                    <option value="action">Action</option>
+                                    <option value="comedy">Comedy</option>
+                                    <option value="romance">Romance</option>
+                                    <option value="sci-fi">Sci-fi</option>
+                                    <option value="terror">Terror</option>
+                                </select>
+
+                            </div>
                             <div class="mb-3">
                                 <label for="synopsis" class="form-label">Synopsis</label>
                                 <textarea class="form-control" id="synopsis" rows="3"
                                     placeholder="Write the synopsis movie" required></textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="platforms" class="form-label">Platforms</label>
+                                <label for="platforms" class="form-label">Avaible in</label>
                                 <select multiple class="form-select mb-2" id="platforms">
                                     <option value="" disabled selected>Select Platforms</option>
                                     <option value="Netflix">Netflix</option>
@@ -111,12 +123,22 @@
                                     placeholder="Duration in minutes" required />
                             </div>
                             <div class="mb-3">
-                                <label for="actors" class="form-label">Actors</label>
-                                <textarea class="form-control" id="Actors" rows="3"
+                                <label for="director" class="form-label">Director</label>
+                                <input type="text" class="form-control" id="director"
+                                    placeholder="Enter the director name" required />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="cast" class="form-label">Cast</label>
+                                <textarea class="form-control" id="cast" rows="3"
                                     placeholder="Write the actors from the movie" required></textarea>
                             </div>
-                            <button type="button" class="btn btn-success"> Save <i class="bi bi-check me-1"></i></button>
-                            <a class="btn btne btn-danger" href="index.html">Cancel <i class="bi bi-arrow-bar-left me-1"></i></a>
+                            <div class="mb-3">
+                                <label for="frontpage" class="form-label">Front Page</label>
+                                <input type="file" class="form-control" id="frontpage"/>
+                            </div>
+                            <button type="button" class="btn btn-success"><i class="bi bi-check me-1"></i> Save</button>
+                            <a class="btn btne btn-danger" href="index.html"><i class="bi bi-arrow-bar-left me-1"></i> Cancel</a>
                         </form>
                     </div>
                 </div>
