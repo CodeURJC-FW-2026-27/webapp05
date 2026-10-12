@@ -54,9 +54,9 @@
      - Crear los botones "Edit" y "Delete" para los elementos de la entidad secundaria 
      - Implementación del formulario para crear elementos de la entidad secundaria (review)
   2. 5 commits más significativos:
-     -Implementación entidad secundaria: [Commit c165a268bfa32c1048a3565db7156219dbb9994d] (https://github.com/CodeURJC-FW-2026-27/webapp05/commit/c165a268bfa32c1048a3565db7156219dbb9994d)
-     -Modificación del nav de la pagina de detalle: [Commit c1eb01cb825b9dcd652d68b14733895d566ab8e4] (https://github.com/CodeURJC-FW-2026-27/webapp05/commit/c1eb01cb825b9dcd652d68b14733895d566ab8e4)
-     -Formato de colores CSS para la página de detalle: [Commit 230ea13410d98b1cd05de02a8724d3315b56c5d1] (https://github.com/CodeURJC-FW-2026-27/webapp05/commit/230ea13410d98b1cd05de02a8724d3315b56c5d1)
+     - Implementación entidad secundaria: [Commit c165a268bfa32c1048a3565db7156219dbb9994d] (https://github.com/CodeURJC-FW-2026-27/webapp05/commit/c165a268bfa32c1048a3565db7156219dbb9994d)
+     - Modificación del nav de la pagina de detalle: [Commit c1eb01cb825b9dcd652d68b14733895d566ab8e4] (https://github.com/CodeURJC-FW-2026-27/webapp05/commit/c1eb01cb825b9dcd652d68b14733895d566ab8e4)
+     - Formato de colores CSS para la página de detalle: [Commit 230ea13410d98b1cd05de02a8724d3315b56c5d1] (https://github.com/CodeURJC-FW-2026-27/webapp05/commit/230ea13410d98b1cd05de02a8724d3315b56c5d1)
      -
 
  
