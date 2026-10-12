@@ -41,7 +41,7 @@
    <img width="2560" height="654" alt="image" src="https://github.com/user-attachments/assets/aa6dc0c5-090d-47b1-9c55-5a54fd340448" />
 3.<strong>Página formulario:<strong>
 
-   <img width="2553" height="1156" alt="image" src="https://github.com/user-attachments/assets/a57c9e43-1ced-4532-be5e-523f47f7eab8" />
+   <img width="2560" height="1156" alt="image" src="https://github.com/user-attachments/assets/a57c9e43-1ced-4532-be5e-523f47f7eab8" />
    <img width="2560" height="610" alt="image" src="https://github.com/user-attachments/assets/4a2da4b7-2df0-457f-876d-f0cb26cb6343" />
 
 
