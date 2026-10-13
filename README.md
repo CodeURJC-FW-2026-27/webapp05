@@ -64,6 +64,25 @@
       - styles (https://github.com/CodeURJC-FW-2026-27/webapp05/tree/main/startbootstrap-shop-homepage-gh-pages/css)
       - README (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/README.md)
 
+- Samuel Nieto Bautista:
+  1. Tareas realizadas:
+     - Creación del documento html del index
+     - Cambios de estetica en el index.
+     - Incorporacion de la entidad principal(peliculas)
+     - Hiperenlaces a la pagina de detalles
+     - Creacion de los botones "Crear un nuevo elemento",filtro y home.
+
+  2. 5 commits más significativos:
+     - CLASE DE HOY: [Commit 79224bf61ba1879fb65a7d690fc993739fb9df86] (https://github.com/CodeURJC-FW-2026-27/webapp05/commit/79224bf61ba1879fb65a7d690fc993739fb9df86)
+     -Primeros cambios de adaptacion index: [Commit d9175ce10ccc68f12f81b2b6957604b93fa0b666] (https://github.com/CodeURJC-FW-2026-27/webapp05/commit/d9175ce10ccc68f12f81b2b6957604b93fa0b666)
+     - Parte de las pelis: [Commit bf9dd76b73540ed57425a36749bbb8c1acfe0914] (https://github.com/CodeURJC-FW-2026-27/webapp05/commit/bf9dd76b73540ed57425a36749bbb8c1acfe0914)
+     -Pelis completas e hiperenlaces: [Commit 9f985d9b865d160b29be1d918b44379163eb8f95] (https://github.com/CodeURJC-FW-2026-27/webapp05/commit/9f985d9b865d160b29be1d918b44379163eb8f95)
+     - Boton formulario y ajuste de columnas: [Commit 14a589370c563c3aea32585eb231c8e259debda7] (https://github.com/CodeURJC-FW-2026-27/webapp05/commit/14a589370c563c3aea32585eb231c8e259debda7#diff-3514708e5cbbecf35d5173ec7fe0c5833864557b2e10347e1fdbc9c59beefac3)
+     
+   3. Ficheros en los que se ha participado:
+      - index (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/startbootstrap-shop-homepage-gh-pages/index.html)
+      - styles (https://github.com/CodeURJC-FW-2026-27/webapp05/tree/main/startbootstrap-shop-homepage-gh-pages/css)
+      - README (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/README.md)
 
 
          
