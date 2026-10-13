@@ -84,7 +84,7 @@
       - styles (https://github.com/CodeURJC-FW-2026-27/webapp05/tree/main/startbootstrap-shop-homepage-gh-pages/css)
       - README (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/README.md)
      
-  -  Marcos Calero Pelayo:
+-  Marcos Calero Pelayo:
   1. Tareas realizadas:
      - Creación del documento html de la página secundaria para el formulario 
      - Creación de la barra de búsqueda
@@ -107,7 +107,24 @@
       - index (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/startbootstrap-shop-homepage-gh-pages/index.html)
       - README (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/README.md)
       - new-item https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/startbootstrap-shop-homepage-gh-pages/secondarypage.html
-
-
+        
+- Alejandro Bodas Navidad:
+  1. Tareas realizadas:
+     - Creación del documento html de la página de detalle
+     - Expresar el formato equivalente a la página principal
+     - Creación de los atributos de la entidad principal
+     - Creación de botón de retorno a la página principal
+     - Crear los botones "Edit" y "Delete" para los elementos de la entidad principal
+       
+  2. 5 commits más significativos:
+     - Pagina Secundaria entidad principal: [Commit 023f3bf988c624973a931c0f09af7a0e9b82a14f] (https://github.com/CodeURJC-FW-2026-27/webapp05/commit/023f3bf988c624973a931c0f09af7a0e9b82a14f)
+     - Update entities in README for movie review site: [Commit 10daf920a9c3f61c73fedb04cf1254c725f3d0e9] (https://github.com/CodeURJC-FW-2026-27/webapp05/commit/10daf920a9c3f61c73fedb04cf1254c725f3d0e9)
+     - Cambios Atributos: [Commit 7aea6469e1b390fac4bdd214f35518f0f7af2237] (https://github.com/CodeURJC-FW-2026-27/webapp05/commit/7aea6469e1b390fac4bdd214f35518f0f7af2237)
+     - Cambios nuevos: [Commit 36bf85e4d88b4f373ef00e2a6a245a9824cb9ae9] (https://github.com/CodeURJC-FW-2026-27/webapp05/commit/36bf85e4d88b4f373ef00e2a6a245a9824cb9ae9)
+     - Traduccion: [Commit 137603974448bec86ed4c33537c5486c1b40ee89] (https://github.com/CodeURJC-FW-2026-27/webapp05/commit/137603974448bec86ed4c33537c5486c1b40ee89) 
+   3. Ficheros en los que se ha participado:
+      - secondarypage (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/startbootstrap-shop-homepage-gh-pages/secondarypage.html)
+      - index (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/startbootstrap-shop-homepage-gh-pages/index.html)
+      - README (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/README.md)
          
             
