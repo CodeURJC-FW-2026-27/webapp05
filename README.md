@@ -83,6 +83,30 @@
       - index (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/startbootstrap-shop-homepage-gh-pages/index.html)
       - styles (https://github.com/CodeURJC-FW-2026-27/webapp05/tree/main/startbootstrap-shop-homepage-gh-pages/css)
       - README (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/README.md)
+     
+  -  Marcos Calero Pelayo:
+  1. Tareas realizadas:
+     - Creación del documento html de la página secundaria para el formulario 
+     - Creación de la barra de búsqueda
+     - Creación del formulario de la entidad principal 
+     - Unificar formatos de la cabecera 
+     - Cambiar el favicon de la web 
+  2. 5 commits más significativos:
+     - Implementación de la barra de búsqueda 886ea5bf7470ccc3ee76958ee9a3d64eb0390c31 (https://github.com/CodeURJC-FW-2026-27/webapp05/commit/886ea5bf7470ccc3ee76958ee9a3d64eb0390c31)
+
+     - Creación nueva página con formulario : [Commit 1a8ff3cb2d6469ab1dcbbecd6b21da8b29116ca2] https://github.com/CodeURJC-FW-2026-27/webapp05/commit/1a8ff3cb2d6469ab1dcbbecd6b21da8b29116ca2
+
+     - Cambios en la organización del grid de la cabecera: [Commit df87369a1bfa5849ff00297fc970b2077ba266e1] https://github.com/CodeURJC-FW-2026-27/webapp05/commit/df87369a1bfa5849ff00297fc970b2077ba266e1
+
+     - Validacion de atributos en el formulario de creación: [Commit 7bdf6583d4981e8910b61a5e8d02563ab507b962] https://github.com/CodeURJC-FW-2026-27/webapp05/commit/7bdf6583d4981e8910b61a5e8d02563ab507b962
+
+     - nuevo favicon : [Commit 1864a0216fc04271a314e0b0e81fc77b83cf9a3d] https://github.com/CodeURJC-FW-2026-27/webapp05/commit/1864a0216fc04271a314e0b0e81fc77b83cf9a3d 
+
+   3. Ficheros en los que se ha participado:
+      - secondarypage (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/startbootstrap-shop-homepage-gh-pages/secondarypage.html)
+      - index (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/startbootstrap-shop-homepage-gh-pages/index.html)
+      - README (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/README.md)
+      - new-item https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/startbootstrap-shop-homepage-gh-pages/secondarypage.html
 
 
          
