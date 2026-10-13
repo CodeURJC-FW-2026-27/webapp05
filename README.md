@@ -58,7 +58,7 @@
      - Modificación del nav de la pagina de detalle: [Commit c1eb01cb825b9dcd652d68b14733895d566ab8e4] (https://github.com/CodeURJC-FW-2026-27/webapp05/commit/c1eb01cb825b9dcd652d68b14733895d566ab8e4)
      - Formato de colores CSS para la página de detalle: [Commit 230ea13410d98b1cd05de02a8724d3315b56c5d1] (https://github.com/CodeURJC-FW-2026-27/webapp05/commit/230ea13410d98b1cd05de02a8724d3315b56c5d1)
      - Adaptación atributos de la entidad principal: [Commit b07713f1d917c000aaf6f841fb66fdfcfd45f947] (https://github.com/CodeURJC-FW-2026-27/webapp05/commit/b07713f1d917c000aaf6f841fb66fdfcfd45f947)
-     - Pequeños cambios de formato y texto: [Commit 8a0f0cac2804691a27f0d1b83df6f30c4fa4665c; Commit 6bab9899c5690c01ede5788257bbf83e18d61815] (https://github.com/CodeURJC-FW-2026- 27/webapp05/commit/8a0f0cac2804691a27f0d1b83df6f30c4fa4665c)(https://github.com/CodeURJC-FW-2026-27/webapp05/commit/6bab9899c5690c01ede5788257bbf83e18d61815)
+     - Pequeños cambios de formato y texto: [Commit 8a0f0cac2804691a27f0d1b83df6f30c4fa4665c; Commit 6bab9899c5690c01ede5788257bbf83e18d61815] (https://github.com/CodeURJC-FW-2026-27/webapp05/commit/8a0f0cac2804691a27f0d1b83df6f30c4fa4665c) (https://github.com/CodeURJC-FW-2026-27/webapp05/commit/6bab9899c5690c01ede5788257bbf83e18d61815)
    3. Ficheros en los que se ha participado:
       - secondarypage (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/startbootstrap-shop-homepage-gh-pages/secondarypage.html)
       - styles (https://github.com/CodeURJC-FW-2026-27/webapp05/tree/main/startbootstrap-shop-homepage-gh-pages/css)
