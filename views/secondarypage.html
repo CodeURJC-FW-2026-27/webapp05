@@ -96,54 +96,58 @@
               <div class = "col-lg-8 offset-lg-2">
                 <h3 class="fw-bolder mb-4">Community Review</h3>
                 <div class = "list-group mb-4">
+                   {{#reviews}} 
                     <!--review 1-->
                     <div class="list-group-item d-flex justify-content-between align-items-start p-3">
                      <div class = "ms-2 me-auto">
-                        <div class = "fw-bold">John Doe <span class="text-warning">★★★★★</span></div>
-                        The movie was a thrilling experience from start to finish. The plot twists kept me on the edge of my seat, and the acting was top-notch. Highly recommend!
-                     </div> 
-                     <div class="btn-group btn-group-sm">
-                        <button class="btn btn-outline-secondary" type="button">Edit</button>
-                        <button class="btn btn-outline-danger" type="button">Delete</button>
-                     </div>  
+                        <div class = "fw-bold">{{title}}<span class="text-warning">{{stars}} </span></div>
+                        <div class ="text-muted small mb-1">by {{reviewerName}}</div>
+                    {{reviewText}} 
+            
                     </div>
-                    <!--review 2-->
-                    <div class="list-group-item d-flex justify-content-between align-items-start p-3">
-                     <div class = "ms-2 me-auto">
-                        <div class = "fw-bold">Justin <span class="text-warning">★★★★</span></div>
-                        You can't cook the cat Nikki!
-                     </div> 
-                     <div class="btn-group btn-group-sm">
-                        <button class="btn btn-outline-secondary" type="button">Edit</button>
-                        <button class="btn btn-outline-danger" type="button">Delete</button>
-                     </div>  
-                    </div> 
+                <div class="d-flex gap-1">
+                   <a class="btn btn-sm btn-outline-secondary" href="/movie/{{movie._id}}/review/{{_id}}/edit">Edit</a>
+                     <form action="/movie/{{movie._id}}/review/{{_id}}/delete" method="post">
+                        <button class="btn btn-sm btn-outline-danger" type="submit">Delete</button>
+                        </form>
+
+
+                </div>
+                </div>
+                
+                {{/reviews}}
+                {{^reviews}}
+                <div class="list-group-item p-3 text-muted">No reviews yet. Be the first to review this movie!</div>
+                {{/reviews}}
                 </div>
                 <!--Add Review Form-->
                 <div class="card bg-light p-4">
                     <h4 class="card-title mb-3">Add a Review</h4>
-                    <form>
+                    <form action="/movie/{{movie._id}}/review" method="post">
                      <div class="mb-3">
                         <label for="reviewerName" class="form-label">Your Name</label>
-                        <input type="text" class="form-control" id="reviewerName" placeholder="Enter your name" required />
+                        <input type="text" class="form-control" id="reviewerName" name="author" value="{{reviewerName}}" placeholder="Enter your name" required />
                         </div>
                         <div class="mb-3">
-                        <label for="reviewText" class="form-label">Your Review</label>
-                        <select class="form-select mb-2" id="reviewRating" required>
-                            <option value="" disabled selected>Select a rating</option>
-                            <option value="1">1 Star</option>
-                            <option value="2">2 Stars</option>
-                            <option value="3">3 Stars</option>
-                            <option value="4">4 Stars</option>
-                            <option value="5">5 Stars</option>
+                        <label for="reviewTitle" class="form-label">Review Title</label>
+                        <input type="text" class="form-control" id="reviewTitle" name="title" maxlength="100" value="{{title}}" placeholder="Enter a title for your review" required />
+                        </div>
+                        <div class="mb-3">
+                        <label for="reviewText" class="form-label">Your Rating</label>
+                        <select class="form-select mb-2" id="reviewRating" name="rating" required>
+                            <option value="" disabled {{#noRating}} selected {{/noRating}}>Select a rating</option>
+                           {{#ratingOptions}}
+                            <option value="{{value}}" {{#isSelected}} selected {{/isSelected}}>{{label}} Stars</option>
+                           {{/ratingOptions}}
+        
                         </select>
  
                         </div>
                      <div class="mb-3">
                         <label for="reviewText" class="form-label">Your Review</label>
-                        <textarea class="form-control" id="reviewText" rows="3" placeholder="Write your review here..." required></textarea>
+                        <textarea class="form-control" id="reviewText" name="text" rows="3" minlength="10" maxlength="500" placeholder="Write your review here..." required>{{review.text}}</textarea>
                      </div>
-                        <button type="button" class="btn btn-primary">Submit Review</button>
+                        <button type="submit" class="btn btn-primary">Submit Review</button>
                     </form>
                 </div>
               </div>
