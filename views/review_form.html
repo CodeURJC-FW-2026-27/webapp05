@@ -15,15 +15,15 @@
                         <label for="reviewTitle" class="form-label">Review Title</label>
                         <input type="text" class="form-control" id="reviewTitle" name="title" maxlength="100" value="{{title}}" placeholder="Enter a title for your review" required />
                       </div>
-                      <div class="mb-3">
+                       <div class="mb-3">
                         <label for="reviewRating" class="form-label">Your Rating</label>
                         <select class="form-select mb-2" id="reviewRating" name="rating" required>
                             <option value="" disabled {{#noRating}} selected {{/noRating}}>Select a rating</option>
-                           {{#ratingOptions}}
-                            <option value="{{value}}" {{#isSelected}} selected {{/isSelected}}>{{label}} Stars</option>
-                           {{/ratingOptions}}
+                           {{#options}}
+                            <option value="{{value}}" {{#isSelected}} selected {{/isSelected}}>{{label}}</option>
+                           {{/options}}
                         </select>
-                      </div>
+                        </div>
                       <div class="mb-3">
                         <label for="reviewText" class="form-label">Your Review</label>
                         <textarea class="form-control" id="reviewText" name="text" rows="3" minlength="10" maxlength="500" placeholder="Write your review here..." required>{{reviewText}}</textarea>
