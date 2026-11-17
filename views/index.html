@@ -24,7 +24,14 @@
         </div>
     </div>
     {{/movies}}
-
+<!-- Si la lista de películas está vacía, muestra este aviso-->
+    {{^movies}}
+<div class="col-12 text-center py-5">
+    <div class="alert alert-warning" role="alert">
+        No movie has been found.
+    </div>
+</div>
+{{/movies}}
 </div>
             </div>
         </section>

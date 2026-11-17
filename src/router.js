@@ -22,7 +22,7 @@ router.get('/search', async (req, res) => {
         title: { $regex: searchTerm, $options: 'i'}
     }).toArray();
     res.render('index', { movies });
-})
+});
 
 // 1. Ruta para mostrar el formulario de crear nueva película (¡Debe ir ANTES de /movie/:id!)
 router.get('/movie/new', (req, res) => {
