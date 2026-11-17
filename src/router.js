@@ -84,7 +84,7 @@ async function saveMovie(req, res) {
         ageRating: req.body.ageRating || '',
         genre: req.body.genre || '',
         synopsis: req.body.synopsis ? req.body.synopsis.trim() : '',
-        platforms: req.body.platforms ? req.body.platforms.trim() : '',
+        platforms: req.body.platforms.length > 0 ? req.body.platforms.join(', ') : '',
         duration: req.body.duration ? req.body.duration.trim() : '',
         director: req.body.director ? req.body.director.trim() : '',
         cast: req.body.cast ? req.body.cast.trim() : '',
@@ -261,9 +261,7 @@ function buildGenreOptions(selected) {
 
 //Builds an object with genre options for the movie form
 function buildPlatformsOptions(selected) {
-    let aSelected = selected ?  selected.split(","):[] ;
-
-    console.log(aSelected);
+    let aSelected = selected ? selected.split(","):[];
 
     const platformsOptions = ["Netflix","HBO","Prime Video","Disney+", "Movistar+", "Max", "Paramount+"].map(value => ({
         value,
