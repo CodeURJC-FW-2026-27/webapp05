@@ -1,7 +1,6 @@
 import express from 'express';
 import { MongoClient, ObjectId } from 'mongodb';
 
-
 const router = express.Router();
 export default router;
 
@@ -11,30 +10,64 @@ const db = client.db('cinema');
 const moviesCollection = db.collection('movies');
 const reviewsCollection = db.collection('reviews');
 
-
 router.get('/', async (req, res) => {
     let movies = await moviesCollection.find().toArray();
     res.render('index', { movies });
 });
-router.get('/movie/:id', async (req, res) => {
-const movieId = parseId(req.params.id);
-const movie = movieId && await moviesCollection.findOne({ _id: movieId });
- if (!movie) return renderError(res, 'Movie not found', '/', 'Go back to home');
-res.render('secondarypage', { movie, reviews: await getReviewsForMovie(movie._id), review:{}, ...buildRatingOptions() })   
+
+// 1. Ruta para mostrar el formulario de crear nueva película (¡Debe ir ANTES de /movie/:id!)
+router.get('/movie/new', (req, res) => {
+    res.render('new-item', { movie: {} });
 });
 
-//Edit review form
+// 2. Ruta para recibir los datos del formulario y guardarlos en MongoDB
+router.post('/movie', async (req, res) => {
+    const newMovie = {
+        title: req.body.title ? req.body.title.trim() : '',
+        year: req.body.year ? req.body.year.trim() : '',
+        ageRating: req.body.ageRating || '',
+        genre: req.body.genre || '',
+        synopsis: req.body.synopsis ? req.body.synopsis.trim() : '',
+        platforms: req.body.platforms ? req.body.platforms.trim() : '',
+        duration: req.body.duration ? req.body.duration.trim() : '',
+        director: req.body.director ? req.body.director.trim() : '',
+        cast: req.body.cast ? req.body.cast.trim() : '',
+        frontpage: req.body.frontpage ? req.body.frontpage.trim() : ''
+    };
+
+    const result = await moviesCollection.insertOne(newMovie);
+    res.redirect(`/movie/${result.insertedId}`);
+});
+
+// 3. Ruta para ver los detalles de una película específica por su ID
+router.get('/movie/:id', async (req, res) => {
+    const movieId = parseId(req.params.id);
+    const movie = movieId && await moviesCollection.findOne({ _id: movieId });
+    if (!movie) return renderError(res, 'Movie not found', '/', 'Go back to home');
+    
+    res.render('secondarypage', { 
+        movie, 
+        reviews: await getReviewsForMovie(movie._id), 
+        review: {}, 
+        ...buildRatingOptions() 
+    });   
+});
+
+// Edit review form
 router.get('/movie/:movieId/review/:reviewId/edit', async (req, res) => {
- const movie = await loadMovie(req, res);
-if(!movie) return;
-const review = await reviewsCollection.findOne({ _id: parseId(req.params.reviewId), movieId: movie._id });
-if(!review){
-return renderError(res, 'Review not found', `/movie/${movie._id}`, 'Go back to movie page');
-
-} 
-res.render('review_form', { movie, review, ...buildRatingOptions(review.rating), action: `/movie/${movie._id}/review/${review._id}` });
-
-}); 
+    const movie = await loadMovie(req, res);
+    if (!movie) return;
+    const review = await reviewsCollection.findOne({ _id: parseId(req.params.reviewId), movieId: movie._id });
+    if (!review) {
+        return renderError(res, 'Review not found', `/movie/${movie._id}`, 'Go back to movie page');
+    } 
+    res.render('review_form', { 
+        movie, 
+        review, 
+        ...buildRatingOptions(review.rating), 
+        action: `/movie/${movie._id}/review/${review._id}` 
+    });
+});
 
 //create and update review form
 async function saveReview(req, res) {
