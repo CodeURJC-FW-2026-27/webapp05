@@ -3761,10 +3761,10 @@ textarea.form-control-lg {
 .navbar > .container-lg,
 .navbar > .container-xl,
 .navbar > .container-xxl {
-  display: flex;
-  flex-wrap: inherit;
-  align-items: center;
-  justify-content: space-between;
+  display:flex;
+  flex-wrap:inherit;
+  align-items:center;
+  justify-content:space-between;
 }
 .navbar-brand {
   padding-top: var(--bs-navbar-brand-padding-y);
@@ -3794,7 +3794,7 @@ textarea.form-control-lg {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
-  margin-left: auto
+  margin-left: auto;
 }
 .navbar-nav .show > .nav-link,
 .navbar-nav .nav-link.active {
@@ -3829,9 +3829,11 @@ textarea.form-control-lg {
   line-height: 1;
   color: var(--bs-navbar-color);
   background-color: transparent;
-  border: var(--bs-border-width) solid var(--bs-navbar-toggler-border-color);
+  border: none;
   border-radius: var(--bs-navbar-toggler-border-radius);
   transition: var(--bs-navbar-toggler-transition);
+  outline: none;
+  box-shadow: none;
 }
 @media (prefers-reduced-motion: reduce) {
   .navbar-toggler {
@@ -10854,3 +10856,15 @@ color: rgb(255,255,255);
 .fw-bolder{
 color: rgb(255,255,255);
 }
+@media (max-width: 991.98px) {
+  .navbar .input-group {
+    max-width: 210px !important; /* Ajusta el tamaño un pelín si lo ves necesario */
+    margin-left: 100px !important;  /* Añade o incrementa este margen para separarlo del logo */
+  }
+}
+  .navbar .container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }

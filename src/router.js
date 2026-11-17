@@ -16,9 +16,8 @@ router.get('/', async (req, res) => {
     let movies = await moviesCollection.find().toArray();
     res.render('index', { movies });
 });
-//Movie details page(includes reviews and review form)
 router.get('/movie/:id', async (req, res) => {
-const movieId = paraseId(req.params.id);
+const movieId = parseId(req.params.id);
 const movie = movieId && await moviesCollection.findOne({ _id: movieId });
  if (!movie) return renderError(res, 'Movie not found', '/', 'Go back to home');
 res.render('secondarypage', { movie, reviews: await getReviewsForMovie(movie._id), review:{}, ...buildRatingOptions() })   
@@ -33,7 +32,7 @@ if(!review){
 return renderError(res, 'Review not found', `/movie/${movie._id}`, 'Go back to movie page');
 
 } 
-res.render('reviewform', { movie, review, ...buildRatingOptions(review.rating), action: `/movie/${movie._id}/review/${review._id}` });
+res.render('review_form', { movie, review, ...buildRatingOptions(review.rating), action: `/movie/${movie._id}/review/${review._id}` });
 
 }); 
 
@@ -44,8 +43,8 @@ if (!movie) return;
 const isEdit = Boolean(req.params.reviewId);
 const reviewId = isEdit ? parseId(req.params.reviewId) : null;
 const backUrl = isEdit ? `/movie/${movie._id}/review/${req.params.reviewId}/edit` : `/movie/${movie._id}`;
-const errors = validatereview(req.body, movie._id, reviewId);
-if (errors.lenght > 0) {
+const errors = await validatereview(req.body, movie._id, reviewId);
+if (errors.length > 0) {
 return renderError(res, errors.join(', '), backUrl, 'Go back');
 
 } 
@@ -126,7 +125,7 @@ errors.push('Title must be unique for this movie');
 if (!data.rating || !Number.isInteger(rating) || rating < 1 || rating > 5) {
 errors.push('Rating must be an integer between 1 and 5');
 }
-if (text.lenght < 10 || text.lenght > 500){
+if (text.length < 10 || text.length > 500){
 errors.push('Text must be between 10 and 500 characters');
 } 
 return errors;
@@ -139,7 +138,7 @@ value,
 label: `${value} star${value > 1 ? 's' : ''}`,
 selected: value === selected
 }));
-return { ratingOption, noRating: !selected };
+return { options, noRating: !selected };
 }
 
 //Returns the reviews of a movie with a "stars" string ready for the template
@@ -149,51 +148,121 @@ return list.map(review => ({...review, stars: '★'.repeat(review.rating)}));
 } 
 
 
+// Inserts sample movies only if the collection is empty
 async function loadMovies() {
+    if (await moviesCollection.countDocuments() > 0) return;
+
     const movies = [
         {
-            "title": "Smile 2",
-            "frontpage": "/001_m.jpg"
+            title: 'Smile 2',
+            frontpage: '/001_m.jpg',
+            genre: 'Terror',
+            duration: 127,
+            year: '2024-10-18',
+            ageRating: '16+',
+            director: 'Parker Finn',
+            platforms: 'Paramount+',
+            cast: 'Naomi Scott, Rosemarie DeWitt, Lukas Gage',
+            synopsis: 'A pop star, about to go on tour, starts experiencing terrifying and inexplicable events after a traumatic incident.'
         },
         {
-            "title": "Titanic",
-            "frontpage": "/002_m.jpg"
+            title: 'Titanic',
+            frontpage: '/002_m.jpg',
+            genre: 'Romance',
+            duration: 195,
+            year: '1997-12-19',
+            ageRating: '12+',
+            director: 'James Cameron',
+            platforms: 'Disney+, Prime Video',
+            cast: 'Leonardo DiCaprio, Kate Winslet, Billy Zane',
+            synopsis: 'A young aristocrat falls in love with a poor artist aboard the ill-fated R.M.S. Titanic.'
         },
         {
-            "title": "Interstellar",
-            "frontpage": "/005_m.jpg"
+            title: 'Interstellar',
+            frontpage: '/005_m.jpg',
+            genre: 'Sci-fi',
+            duration: 169,
+            year: '2014-11-07',
+            ageRating: '12+',
+            director: 'Christopher Nolan',
+            platforms: 'Netflix, Prime Video',
+            cast: 'Matthew McConaughey, Anne Hathaway, Jessica Chastain',
+            synopsis: 'A team of explorers travels through a wormhole in space to ensure humanity\'s survival.'
         },
         {
-            "title": "Lalaland",
-            "frontpage": "/581119.jpg"
+            title: 'Lalaland',
+            frontpage: '/581119.jpg',
+            genre: 'Romance',
+            duration: 128,
+            year: '2016-12-09',
+            ageRating: 'All ages',
+            director: 'Damien Chazelle',
+            platforms: 'Netflix, Prime Video',
+            cast: 'Ryan Gosling, Emma Stone, John Legend',
+            synopsis: 'A jazz pianist and an aspiring actress fall in love while chasing their dreams in Los Angeles.'
         },
         {
-            "title": "Resacon En Las Vegas",
-            "frontpage": "/20028573.jpg"
+            title: 'Resacon En Las Vegas',
+            frontpage: '/20028573.jpg',
+            genre: 'Comedy',
+            duration: 100,
+            year: '2009-06-05',
+            ageRating: '16+',
+            director: 'Todd Phillips',
+            platforms: 'Max, Prime Video',
+            cast: 'Bradley Cooper, Ed Helms, Zach Galifianakis',
+            synopsis: 'Three friends wake up after a bachelor party in Las Vegas with no memory of the night and the groom missing.'
         },
         {
-            "title": "Gladiator",
-            "frontpage": "/20149073.jpg"
+            title: 'Gladiator',
+            frontpage: '/20149073.jpg',
+            genre: 'Action',
+            duration: 155,
+            year: '2000-05-05',
+            ageRating: '16+',
+            director: 'Ridley Scott',
+            platforms: 'Prime Video, Movistar+',
+            cast: 'Russell Crowe, Joaquin Phoenix, Connie Nielsen',
+            synopsis: 'A betrayed Roman general seeks revenge against the corrupt emperor who murdered his family.'
         },
         {
-            "title": "Avengers End Game",
-            "frontpage": "/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_FMjpg_UX1000_.jpg"
+            title: 'Avengers End Game',
+            frontpage: '/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_FMjpg_UX1000_.jpg',
+            genre: 'Action',
+            duration: 181,
+            year: '2019-04-26',
+            ageRating: '12+',
+            director: 'Anthony and Joe Russo',
+            platforms: 'Disney+',
+            cast: 'Robert Downey Jr., Chris Evans, Scarlett Johansson',
+            synopsis: 'The Avengers assemble once more to reverse the damage caused by Thanos.'
         },
         {
-            "title": "Obsession",
-            "frontpage": "/obsession__236x336.jpg"
+            title: 'Obsession',
+            frontpage: '/obsession__236x336.jpg',
+            genre: 'Terror',
+            duration: 108,
+            year: '2026-05-15',
+            ageRating: '16+',
+            director: 'Curry Barker',
+            platforms: 'Cinemas',
+            cast: 'Michael Johnston, Inde Navarrette, Cooper Tomlinson',
+            synopsis: 'A man\'s unhealthy obsession with a woman leads him to extreme and dangerous measures.'
         },
         {
-            "title": "Padre No Hay Mas Que Uno 5",
-            "frontpage": "/padrenohaymasquno.jpg" 
+            title: 'Padre No Hay Mas Que Uno 5',
+            frontpage: '/padrenohaymasquno.jpg',
+            genre: 'Comedy',
+            duration: 97,
+            year: '2024-07-26',
+            ageRating: 'All ages',
+            director: 'Santiago Segura',
+            platforms: 'Prime Video',
+            cast: 'Santiago Segura, Toni Acosta, Martita de Graná',
+            synopsis: 'A chaotic family faces yet another round of hilarious situations during the summer holidays.'
         }
     ];
-    
-    await moviesCollection.deleteMany();
-    await moviesCollection.insertMany(movies);
 
-    
-    await moviesCollection.deleteMany();
     await moviesCollection.insertMany(movies);
 }
 
