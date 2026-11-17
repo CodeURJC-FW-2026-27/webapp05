@@ -39,6 +39,16 @@ router.post('/movie', async (req, res) => {
     res.redirect(`/movie/${result.insertedId}`);
 });
 
+// Delete movie (Main Entity)
+router.post('/movie/:id/delete', async (req, res) => {
+    const movieId = parseId(req.params.id);
+    if(!movieId) return renderError(res, 'Invalid movie ID', '/', 'Return to main page');
+    
+    await reviewsCollection.deleteMany({ movieId: movieId });
+
+    await moviesCollection.deleteOne({ _id: movieId });
+    renderMessage(res, 'Movie deleted succesfully', '/', 'Return to main page');
+});
 // 3. Ruta para ver los detalles de una película específica por su ID
 router.get('/movie/:id', async (req, res) => {
     const movieId = parseId(req.params.id);
