@@ -13,48 +13,48 @@
                     <!--Add Review Form-->
                     <div class="card bg-light p-4">
                         <h4 class="card-title mb-3">Add new movie </h4>
-                        <form action="/movie/{{movie._id}}" method="post" enctype="multipart/form-data">
+                        <form action="{{action}}" method="post" >
                             <div class="mb-3">
-                                <label for="movieName" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="movieName" value="{{movie.name}}"
-                                    placeholder="Enter the movie name" required />
+                                <label for="movieTitle" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="movieTitle" name="movieTitle" value="{{movie.title}}"
+                                    placeholder="Enter the movie title" required />
                             </div>
                             <div class="mb-3">
                                 <label for="movieYear" class="form-label">Year</label>
-                                <input type="date" class="form-control" id="movieYear" value="{{movie.year}}"
+                                <input type="date" class="form-control" id="movieYear" name="movieYear" value="{{movie.year}}"
                                     placeholder="Enter the movie year" required />
                             </div>
                             <div class="mb-3">
                                 <label for="ageRating" class="form-label">Age rating</label>
-                                <select class="form-select mb-2" id="ageRating" required>
+                                <select class="form-select mb-2" id="ageRating" name="ageRating" required>
                                     <option value="" disabled {{#noAgeRating}} selected {{/noAgeRating}}>Select age rating</option>
-                                    {{#ratingAgeOptions}}
-                                    <option value="{{value}}" {{#isSelected}} selected {{/isSelected}}>{{label}}</option>
-                                    {{/ratingAgeOptions}}
+                                    {{#options}}
+                                    <option value="{{value}}" {{#selected}} selected {{/selected}}>{{label}}</option>
+                                    {{/options}}
                                 </select>
 
                             </div>
                              <div class="mb-3">
                                 <label for="genre" class="form-label">Genre</label>
-                                <select class="form-select mb-2" id="genre" required>
+                                <select class="form-select mb-2" id="genre" name="genre"  required>
                                     <option value="" disabled {{#noGenre}} selected {{/noGenre}}>Select genre</option>
                                     {{#genreOptions}}
-                                    <option value="{{value}}" {{#isSelected}} selected {{/isSelected}}>{{label}}</option>
+                                    <option value="{{value}}" {{#selectedGenre}} selected {{/selectedGenre}}>{{label}}</option>
                                     {{/genreOptions}}
                                 </select>
 
                             </div>
                             <div class="mb-3">
                                 <label for="synopsis" class="form-label">Synopsis</label>
-                                <textarea class="form-control" id="synopsis" rows="3"
+                                <textarea class="form-control" id="synopsis" name="synopsis" rows="3"
                                     placeholder="Write the synopsis movie" required>{{movie.synopsis}}</textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="platforms" class="form-label">Avaible in</label>
-                                <select multiple class="form-select mb-2" id="platforms">
+                                <select multiple class="form-select mb-2" id="platforms" name="platforms">
                                     <option value="" disabled {{#noPlatforms}} selected {{/noPlatforms}}>Select Platforms</option>
                                     {{#platformsOptions}}
-                                    <option value="{{value}}" {{#isSelected}} selected {{/isSelected}}>{{label}}</option>
+                                    <option value="{{value}}" {{#selectedPlatform}} selected {{/selectedPlatform}}>{{label}}</option>
                                     {{/platformsOptions}}
 
                                 </select>
@@ -62,18 +62,18 @@
                             </div>
                             <div class="mb-3">
                                 <label for="duration" class="form-label">Duration</label>
-                                <input type="number" class="form-control" id="duration" value="{{movie.duration}}"
+                                <input type="number" class="form-control" id="duration" name="duration" value="{{movie.duration}}"
                                     placeholder="Duration in minutes" required />
                             </div>
                             <div class="mb-3">
                                 <label for="director" class="form-label">Director</label>
-                                <input type="text" class="form-control" id="director" value="{{movie.director}}"
+                                <input type="text" class="form-control" id="director" name="director" value="{{movie.director}}"
                                     placeholder="Enter the director name" required />
                             </div>
 
                             <div class="mb-3">
                                 <label for="cast" class="form-label">Cast</label>
-                                <textarea class="form-control" id="cast" rows="3"
+                                <textarea class="form-control" id="cast" name="cast" rows="3"
                                     placeholder="Write the actors from the movie" required>{{movie.cast}}</textarea>
                             </div>
                             {{#hasImage}}
@@ -83,10 +83,10 @@
                             {{/hasImage}}
                             <div class="mb-3">
                                 <label for="frontpage" class="form-label">Front Page</label>
-                                <input type="file" class="form-control" id="frontpage"/>
+                                <input type="file" class="form-control" id="frontpage" name="frontpage"/>
                             </div>
-                            <button type="button" class="btn btn-success"><i class="bi bi-check me-1"></i> Save</button>
-                            <a class="btn btne btn-danger" href="/index"><i class="bi bi-arrow-bar-left me-1"></i> Cancel</a>
+                            <button type="submit" class="btn btn-success"><i class="bi bi-check me-1"></i> Save</button>
+                            <a class="btn btne btn-danger" href="/movie/{{movie._id}}"><i class="bi bi-arrow-bar-left me-1"></i> Cancel</a>
                         </form>
                     </div>
                 </div>

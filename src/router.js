@@ -60,19 +60,25 @@ router.get('/movie/:id/edit', async (req, res) => {
     res.render('new-item', {
         movie,
         isEdit: true,
+        ...buildAgeRatingOptions(movie.ageRating), 
+        ...buildGenreOptions(movie.genre),
+        ...buildPlatformsOptions(movie.platforms),
         action: `/movie/${movie._id}/edit`
     });
 });
 
-router.post('/movie/:id/edit', async (req, res) => {
-    const movieId = parseId(req.params.id);
+router.post('/movie/:id/edit', saveMovie);
+
+async function saveMovie(req, res) {
+    const isEdit = Boolean(req.params.id);
+    const movieId = isEdit ? parseId(req.params.id) : null;
+    const backUrl = isEdit ? `/movie/${req.params.id}` : `/`;
+
     const movie = movieId && await moviesCollection.findOne({ _id: movieId});
 
-    if (!movie) return renderError(res, 'Movie not found', '/', 'Return to main page');
-
-    const updatedMovie = {
-        title: req.body.title ? req.body.title.trim() : '',
-        year: req.body.year ? req.body.year.trim() : '',
+    const theMovie = {
+        title: req.body.movieTitle ? req.body.movieTitle.trim() : '',
+        year: req.body.movieYear ? req.body.movieYear.trim() : '',
         ageRating: req.body.ageRating || '',
         genre: req.body.genre || '',
         synopsis: req.body.synopsis ? req.body.synopsis.trim() : '',
@@ -80,12 +86,41 @@ router.post('/movie/:id/edit', async (req, res) => {
         duration: req.body.duration ? req.body.duration.trim() : '',
         director: req.body.director ? req.body.director.trim() : '',
         cast: req.body.cast ? req.body.cast.trim() : '',
-        frontpage: req.body.frontpage ? req.body.frontpage.trim() : movie.frontpage
+        frontpage: req.body.frontpage ? req.body.frontpage.trim() : movie ? movie.frontpage : ''
     };
 
-    await moviesCollection.updateOne({ _id: movieId }, { $set: updatedMovie});
-    renderMessage(res, 'Movie updated succesfully', `/movie/${movieId}`, 'Return to main page');
-});
+    if (isEdit) {
+        await moviesCollection.updateOne({ _id: movieId }, { $set: theMovie});
+    } else {
+        await moviesCollection.insertOne({ ...theMovie, createdAt: new Date() });
+    } 
+    
+    renderMessage(res, isEdit ? 'Movie updated' : 'Movie created', backUrl, 'Go back to movie page');
+
+} 
+
+// router.post('/movie/:id/edit', async (req, res) => {
+//     const movieId = parseId(req.params.id);
+//     const movie = movieId && await moviesCollection.findOne({ _id: movieId});
+
+//     if (!movie) return renderError(res, 'Movie not found', '/', 'Return to main page');
+
+//     const updatedMovie = {
+//         title: req.body.movieTitle ? req.body.movieTitle.trim() : '',
+//         year: req.body.movieYear ? req.body.movieYear.trim() : '',
+//         ageRating: req.body.ageRating || '',
+//         genre: req.body.genre || '',
+//         synopsis: req.body.synopsis ? req.body.synopsis.trim() : '',
+//         platforms: req.body.platforms ? req.body.platforms.trim() : '',
+//         duration: req.body.duration ? req.body.duration.trim() : '',
+//         director: req.body.director ? req.body.director.trim() : '',
+//         cast: req.body.cast ? req.body.cast.trim() : '',
+//         frontpage: req.body.frontpage ? req.body.frontpage.trim() : movie.frontpage
+//     };
+
+//     await moviesCollection.updateOne({ _id: movieId }, { $set: updatedMovie});
+//     renderMessage(res, 'Movie updated succesfully', `/movie/${movieId}`, 'Return to main page');
+// });
 
 // 3. Ruta para ver los detalles de una película específica por su ID
 router.get('/movie/:id', async (req, res) => {
@@ -222,6 +257,43 @@ selected: value === selected
 return { options, noRating: !selected };
 }
 
+
+//Builds an object with age rating options for the movie form
+function buildAgeRatingOptions(selected) {
+    const options = ["General audiences","Parental guidance","PG-13","Restricted", "NC-17"  ].map(value => ({
+        value,
+        label: `${value}`,
+        selected: value === selected
+    }));
+    return { options, noAgeRating: !selected };
+}
+
+//Builds an object with genre options for the movie form
+function buildGenreOptions(selected) {
+    const genreOptions = ["Action","Comedy","Romance","Sci-fi", "Terror"  ].map(value => ({
+        value,
+        label: `${value}`,
+        selectedGenre: value === selected
+    }));
+    return { genreOptions, noGenre: !selected };
+}
+
+//Builds an object with genre options for the movie form
+function buildPlatformsOptions(selected) {
+    let aSelected = selected.split(",");
+
+    console.log(aSelected);
+
+    const platformsOptions = ["Netflix","HBO","Prime Video","Disney+", "Movistar+", "Max", "Paramount+"].map(value => ({
+        value,
+        label: `${value}`,
+        selectedPlatform: aSelected.includes(value.trim())
+    }));
+    return { platformsOptions, noPlatforms: !selected };
+}
+
+
+
 //Returns the reviews of a movie with a "stars" string ready for the template
 async function getReviewsForMovie(movieId){
 const list = await reviewsCollection.find({movieId}).toArray();
@@ -240,7 +312,7 @@ async function loadMovies() {
             genre: 'Terror',
             duration: 127,
             year: '2024-10-18',
-            ageRating: '16+',
+            ageRating: 'NC-17',
             director: 'Parker Finn',
             platforms: 'Paramount+',
             cast: 'Naomi Scott, Rosemarie DeWitt, Lukas Gage',
@@ -252,7 +324,7 @@ async function loadMovies() {
             genre: 'Romance',
             duration: 195,
             year: '1997-12-19',
-            ageRating: '12+',
+            ageRating: 'PG-13',
             director: 'James Cameron',
             platforms: 'Disney+, Prime Video',
             cast: 'Leonardo DiCaprio, Kate Winslet, Billy Zane',
@@ -264,7 +336,7 @@ async function loadMovies() {
             genre: 'Sci-fi',
             duration: 169,
             year: '2014-11-07',
-            ageRating: '12+',
+            ageRating: 'PG-13',
             director: 'Christopher Nolan',
             platforms: 'Netflix, Prime Video',
             cast: 'Matthew McConaughey, Anne Hathaway, Jessica Chastain',
@@ -276,7 +348,7 @@ async function loadMovies() {
             genre: 'Romance',
             duration: 128,
             year: '2016-12-09',
-            ageRating: 'All ages',
+            ageRating: 'General audiences',
             director: 'Damien Chazelle',
             platforms: 'Netflix, Prime Video',
             cast: 'Ryan Gosling, Emma Stone, John Legend',
@@ -288,7 +360,7 @@ async function loadMovies() {
             genre: 'Comedy',
             duration: 100,
             year: '2009-06-05',
-            ageRating: '16+',
+            ageRating: 'NC-17',
             director: 'Todd Phillips',
             platforms: 'Max, Prime Video',
             cast: 'Bradley Cooper, Ed Helms, Zach Galifianakis',
@@ -300,7 +372,7 @@ async function loadMovies() {
             genre: 'Action',
             duration: 155,
             year: '2000-05-05',
-            ageRating: '16+',
+            ageRating: 'NC-17',
             director: 'Ridley Scott',
             platforms: 'Prime Video, Movistar+',
             cast: 'Russell Crowe, Joaquin Phoenix, Connie Nielsen',
@@ -312,7 +384,7 @@ async function loadMovies() {
             genre: 'Action',
             duration: 181,
             year: '2019-04-26',
-            ageRating: '12+',
+            ageRating: 'PG-13',
             director: 'Anthony and Joe Russo',
             platforms: 'Disney+',
             cast: 'Robert Downey Jr., Chris Evans, Scarlett Johansson',
@@ -324,7 +396,7 @@ async function loadMovies() {
             genre: 'Terror',
             duration: 108,
             year: '2026-05-15',
-            ageRating: '16+',
+            ageRating: 'Restricted',
             director: 'Curry Barker',
             platforms: 'Cinemas',
             cast: 'Michael Johnston, Inde Navarrette, Cooper Tomlinson',
@@ -336,7 +408,7 @@ async function loadMovies() {
             genre: 'Comedy',
             duration: 97,
             year: '2024-07-26',
-            ageRating: 'All ages',
+            ageRating: 'General audiences',
             director: 'Santiago Segura',
             platforms: 'Prime Video',
             cast: 'Santiago Segura, Toni Acosta, Martita de Graná',
