@@ -49,6 +49,44 @@ router.post('/movie/:id/delete', async (req, res) => {
     await moviesCollection.deleteOne({ _id: movieId });
     renderMessage(res, 'Movie deleted succesfully', '/', 'Return to main page');
 });
+
+//Edit Movie (Main Entity)
+router.get('/movie/:id/edit', async (req, res) => {
+    const movieId = parseId(req.params.id);
+    const movie = movieId && await moviesCollection.findOne({ _id: movieId });
+
+    if (!movie) return renderError(res, 'Movie not found', '/', 'Return to main page');
+
+    res.render('new-item', {
+        movie,
+        isEdit: true,
+        action: `/movie/${movie._id}/edit`
+    });
+});
+
+router.post('/movie/:id/edit', async (req, res) => {
+    const movieId = parseId(req.params.id);
+    const movie = movieId && await moviesCollection.findOne({ _id: movieId});
+
+    if (!movie) return renderError(res, 'Movie not found', '/', 'Return to main page');
+
+    const updatedMovie = {
+        title: req.body.title ? req.body.title.trim() : '',
+        year: req.body.year ? req.body.year.trim() : '',
+        ageRating: req.body.ageRating || '',
+        genre: req.body.genre || '',
+        synopsis: req.body.synopsis ? req.body.synopsis.trim() : '',
+        platforms: req.body.platforms ? req.body.platforms.trim() : '',
+        duration: req.body.duration ? req.body.duration.trim() : '',
+        director: req.body.director ? req.body.director.trim() : '',
+        cast: req.body.cast ? req.body.cast.trim() : '',
+        frontpage: req.body.frontpage ? req.body.frontpage.trim() : movie.frontpage
+    };
+
+    await moviesCollection.updateOne({ _id: movieId }, { $set: updatedMovie});
+    renderMessage(res, 'Movie updated succesfully', `/movie/${movieId}`, 'Return to main page');
+});
+
 // 3. Ruta para ver los detalles de una película específica por su ID
 router.get('/movie/:id', async (req, res) => {
     const movieId = parseId(req.params.id);
