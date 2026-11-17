@@ -15,6 +15,15 @@ router.get('/', async (req, res) => {
     res.render('index', { movies });
 });
 
+//Barra de búsqueda
+router.get('/search', async (req, res) => {
+    const searchTerm = req.query.title || '';
+    const movies = await moviesCollection.find({
+        title: { $regex: searchTerm, $options: 'i'}
+    }).toArray();
+    res.render('index', { movies });
+});
+
 // 1. Ruta para mostrar el formulario de crear nueva película (¡Debe ir ANTES de /movie/:id!)
 router.get('/movie/new', (req, res) => {
     res.render('new-item', { movie: {} });
