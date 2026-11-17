@@ -33,27 +33,17 @@ router.get('/genre/:genreName', async (req, res) => {
 
 // 1. Ruta para mostrar el formulario de crear nueva película (¡Debe ir ANTES de /movie/:id!)
 router.get('/movie/new', (req, res) => {
-    res.render('new-item', { movie: {} });
+    res.render('new-item', { 
+        movie: {}, 
+        isEdit: true,
+        ...buildAgeRatingOptions(), 
+        ...buildGenreOptions(),
+        ...buildPlatformsOptions(),
+        action: '/movie', 
+        actionCancel: '/' });
 });
 
-// 2. Ruta para recibir los datos del formulario y guardarlos en MongoDB
-router.post('/movie', async (req, res) => {
-    const newMovie = {
-        title: req.body.title ? req.body.title.trim() : '',
-        year: req.body.year ? req.body.year.trim() : '',
-        ageRating: req.body.ageRating || '',
-        genre: req.body.genre || '',
-        synopsis: req.body.synopsis ? req.body.synopsis.trim() : '',
-        platforms: req.body.platforms ? req.body.platforms.trim() : '',
-        duration: req.body.duration ? req.body.duration.trim() : '',
-        director: req.body.director ? req.body.director.trim() : '',
-        cast: req.body.cast ? req.body.cast.trim() : '',
-        frontpage: req.body.frontpage ? req.body.frontpage.trim() : ''
-    };
 
-    const result = await moviesCollection.insertOne(newMovie);
-    res.redirect(`/movie/${result.insertedId}`);
-});
 
 // Delete movie (Main Entity)
 router.post('/movie/:id/delete', async (req, res) => {
@@ -79,11 +69,14 @@ router.get('/movie/:id/edit', async (req, res) => {
         ...buildAgeRatingOptions(movie.ageRating), 
         ...buildGenreOptions(movie.genre),
         ...buildPlatformsOptions(movie.platforms),
-        action: `/movie/${movie._id}/edit`
+        action: `/movie/${movie._id}/edit`,
+        cancelAction: `/movie/${movie._id}`
     });
 });
 
+router.post('/movie', saveMovie);
 router.post('/movie/:id/edit', saveMovie);
+
 
 async function saveMovie(req, res) {
     const isEdit = Boolean(req.params.id);
@@ -98,7 +91,7 @@ async function saveMovie(req, res) {
         ageRating: req.body.ageRating || '',
         genre: req.body.genre || '',
         synopsis: req.body.synopsis ? req.body.synopsis.trim() : '',
-        platforms: req.body.platforms ? req.body.platforms.trim() : '',
+        platforms: req.body.platforms.length > 0 ? req.body.platforms.join(', ') : '',
         duration: req.body.duration ? req.body.duration.trim() : '',
         director: req.body.director ? req.body.director.trim() : '',
         cast: req.body.cast ? req.body.cast.trim() : '',
@@ -115,28 +108,7 @@ async function saveMovie(req, res) {
 
 } 
 
-// router.post('/movie/:id/edit', async (req, res) => {
-//     const movieId = parseId(req.params.id);
-//     const movie = movieId && await moviesCollection.findOne({ _id: movieId});
 
-//     if (!movie) return renderError(res, 'Movie not found', '/', 'Return to main page');
-
-//     const updatedMovie = {
-//         title: req.body.movieTitle ? req.body.movieTitle.trim() : '',
-//         year: req.body.movieYear ? req.body.movieYear.trim() : '',
-//         ageRating: req.body.ageRating || '',
-//         genre: req.body.genre || '',
-//         synopsis: req.body.synopsis ? req.body.synopsis.trim() : '',
-//         platforms: req.body.platforms ? req.body.platforms.trim() : '',
-//         duration: req.body.duration ? req.body.duration.trim() : '',
-//         director: req.body.director ? req.body.director.trim() : '',
-//         cast: req.body.cast ? req.body.cast.trim() : '',
-//         frontpage: req.body.frontpage ? req.body.frontpage.trim() : movie.frontpage
-//     };
-
-//     await moviesCollection.updateOne({ _id: movieId }, { $set: updatedMovie});
-//     renderMessage(res, 'Movie updated succesfully', `/movie/${movieId}`, 'Return to main page');
-// });
 
 // 3. Ruta para ver los detalles de una película específica por su ID
 router.get('/movie/:id', async (req, res) => {
@@ -296,9 +268,7 @@ function buildGenreOptions(selected) {
 
 //Builds an object with genre options for the movie form
 function buildPlatformsOptions(selected) {
-    let aSelected = selected.split(",");
-
-    console.log(aSelected);
+    let aSelected = selected ? selected.split(","):[];
 
     const platformsOptions = ["Netflix","HBO","Prime Video","Disney+", "Movistar+", "Max", "Paramount+"].map(value => ({
         value,
