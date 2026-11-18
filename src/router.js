@@ -29,6 +29,13 @@ router.get('/search', async (req, res) => {
     res.render('index', { movies });
 });
 
+//Filtro por género
+router.get('/genre/:genreName', async (req, res) => {
+    const genre = req.params.genreName;
+    const movies = await moviesCollection.find({ genre: genre }).toArray();
+    res.render('index', { movies });
+});
+
 // 1. Ruta para mostrar el formulario de crear nueva película (¡Debe ir ANTES de /movie/:id!)
 router.get('/movie/new', (req, res) => {
     res.render('new-item', { 
