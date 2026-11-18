@@ -24,7 +24,7 @@
         </div>
     </div>
                        {{/movies}}
-<!-- Si la lista de películas está vacía, muestra este aviso-->
+<!-- If the movie list is empty, display this message-->
                     {{^movies}}
 <div class="col-12 text-center py-5">
     <div class="alert alert-warning" role="alert">
@@ -34,7 +34,7 @@
 {{/movies}}
 </div>
 
-<!-- Paginación -->
+<!-- Pagination -->
 {{#showPagination}}
 <nav class="d-flex justify-content-center align-items-center gap-3 mt-4">
     {{#hasPrev}}

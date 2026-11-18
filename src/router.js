@@ -30,7 +30,7 @@ const upload = multer({
 
 const PAGE_SIZE = 6;
 
-// Renderiza el index con paginación
+// Render the index with pagination
 async function renderMovieList(res, filter, basePath, extraQuery, pageParam) {
     const total = await moviesCollection.countDocuments(filter);
     const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
@@ -62,7 +62,7 @@ router.get('/', async (req, res) => {
     await renderMovieList(res, {}, '/', '', req.query.page);
 });
 
-//Barra de búsqueda
+//Search bar
 router.get('/search', async (req, res) => {
     const searchTerm = req.query.title || '';
     const safeTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -75,7 +75,7 @@ router.get('/search', async (req, res) => {
     );
 });
 
-//Filtro por género
+//Filter by genre
 router.get('/genre/:genreName', async (req, res) => {
     const genre = req.params.genreName;
     await renderMovieList(
@@ -87,7 +87,7 @@ router.get('/genre/:genreName', async (req, res) => {
     );
 });
 
-// Formulario de crear nueva película (debe ir ANTES de /movie/:id)
+// Form to create a new movie
 router.get('/movie/new', (req, res) => {
     res.render('new-item', {
         movie: {},
@@ -177,7 +177,7 @@ async function saveMovie(req, res) {
 
 
 
-// 3. Ruta para ver los detalles de una película específica por su ID
+// 3. Route to view details of a specific movie by its ID
 router.get('/movie/:id', async (req, res) => {
     const movieId = parseId(req.params.id);
     const movie = movieId && await moviesCollection.findOne({ _id: movieId });
@@ -437,7 +437,7 @@ async function loadMovies() {
 }
 
 await loadMovies();
-// Valida los datos de una película y devuelve un array de errores
+// Validates movie data and returns an array of errors
 function validateMovie(data) {
     const errors = [];
     const title = (data.movieTitle || '').trim();
