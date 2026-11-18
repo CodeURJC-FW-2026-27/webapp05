@@ -126,5 +126,90 @@
       - secondarypage (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/startbootstrap-shop-homepage-gh-pages/secondarypage.html)
       - index (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/startbootstrap-shop-homepage-gh-pages/index.html)
       - README (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/README.md)
+
+
+## Práctica 2:
+
+### Instrucciones de ejecución
+
+#### Requisitos
+- Node.js 18 o superior (probado con v24.21.0)
+- npm (probado con v11.19.0)
+- MongoDB Server [v8.0.30] en ejecución en `localhost:27017`
+- Git [v2.43.0]
+
+#### Dependencias (se instalan con `npm install`)
+- express 5.1.0
+- mongodb ^6.20.0
+- multer ^2.5.0
+- mustache-express 1.3.2
+- nodemon ^3.1.14 (solo desarrollo)
+
+### Pasos
+1. Clonar el repositorio:
+   git clone https://github.com/CodeURJC-FW-2026-27/webapp05.git
+   cd webapp05
+2. Instalar las dependencias:
+   npm install
+3. Comprobar que MongoDB está arrancado (en Linux: `sudo systemctl start mongod`).
+4. Arrancar la aplicación:
+   npm start
+5. Abrir en el navegador: http://localhost:3000
+
+Al arrancar por primera vez, la aplicación crea la base de datos `cinema`
+e inserta películas y reseñas de ejemplo si las colecciones están vacías.
+La carpeta `uploads` guarda las imágenes subidas y no se sube al repositorio.
+
+### Descripción de ficheros
+
+#### Servidor (`src/`)
+- `app.js`: configura Express, el motor Mustache, los archivos estáticos y el
+  procesado de formularios, y arranca el servidor en el puerto 3000.
+- `router.js`: conexión a MongoDB, datos de ejemplo y todas las rutas.
+  Incluye las rutas de reseñas (crear, editar, borrar), su validación y las
+  funciones auxiliares. [Añadir aquí las rutas de películas que haga el resto del equipo]
+
+#### Vistas (`views/`)
+- `index.html`: página principal con el listado de películas.
+- `new-item.html`: formulario de nueva película.
+- `secondarypage.html`: detalle de una película con su lista de reseñas y el
+  formulario para añadir una reseña.
+- `review_form.html`: formulario de edición de una reseña.
+- `message.html`: página de confirmación (reseña creada, editada o borrada).
+- `error.html`: página de error con mensaje y botón para volver.
+
+#### Partials (`views/partials/`)
+- `header.html`: cabecera, barra de navegación y título.
+- `footer.html`: pie de página y scripts.
+
+
+#### Otros
+- `public/`: CSS, JavaScript e imágenes estáticas.
+- `.gitignore`: excluye `node_modules` y `uploads`.
          
-            
+### Video demostración
+
+### Participación de los miembros:
+- Mario Gastelut Chorro:
+  1. Tareas realizadas:
+     - Desarrollo funcional del formulario de reseñas(entidad secundaria), utilizando mustache-express
+     - Desarrollo de la base de datos de la reseña
+     - Desarrollo de la página de error y confirmación
+     - Desarrollo de la página de edición de la review
+     - Desarrollo del router para la reseña
+  2. 5 commits más significativos:
+     - Implementacion moustache review: [e03a39efd08816e352c3fbc85cf6f9caaed2b70c] https://github.com/CodeURJC-FW-2026-27/webapp05/commit/e03a39efd08816e352c3fbc85cf6f9caaed2b70c
+     - Página de mensaje de validacion: [d4a645c987697b35744e0b86bfe121b37c728610] https://github.com/CodeURJC-FW-2026-27/webapp05/commit/d4a645c987697b35744e0b86bfe121b37c728610
+     - Página de error de review: [76285f076ff6e6e76beb4d1a7f3c5e2448c21052] https://github.com/CodeURJC-FW-2026-27/webapp05/commit/76285f076ff6e6e76beb4d1a7f3c5e2448c21052
+     - Página de edición de review: [29cc805d554da8fdbb021c3235fe8612c2d0e5e5] https://github.com/CodeURJC-FW-2026-27/webapp05/commit/29cc805d554da8fdbb021c3235fe8612c2d0e5e5
+     - Agregación de la colección reviews y cambio de la ruta de las vistas a secondentity: [cac389e20d62a1a5bd00bdc0054af91b9395f97b] https://github.com/CodeURJC-FW-2026-27/webapp05/commit/cac389e20d62a1a5bd00bdc0054af91b9395f97b
+   3. Ficheros en los que se ha participado:
+      - secondarypage (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/startbootstrap-shop-homepage-gh-pages/secondarypage.html)
+      - app.js (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/src/app.js)
+      - router.js (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/src/router.js)
+      - error (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/views/error.html)
+      - message (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/views/message.html)
+      - review_form (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/views/review_form.html)
+      - README (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/README.md)
+
+
