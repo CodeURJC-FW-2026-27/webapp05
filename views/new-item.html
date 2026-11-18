@@ -13,7 +13,7 @@
                     <!--Add Review Form-->
                     <div class="card bg-light p-4">
                         <h4 class="card-title mb-3">Add new movie </h4>
-                        <form action="{{action}}" method="post" >
+                        <form action="{{action}}" method="post" enctype="multipart/form-data" >
                             <div class="mb-3">
                                 <label for="movieTitle" class="form-label">Title</label>
                                 <input type="text" class="form-control" id="movieTitle" name="movieTitle" value="{{movie.title}}"
@@ -76,14 +76,18 @@
                                 <textarea class="form-control" id="cast" name="cast" rows="3"
                                     placeholder="Write the actors from the movie" required>{{movie.cast}}</textarea>
                             </div>
+                            
                             {{#hasImage}}
                             <div class="mb-3">
                                 <img class="card-img-top" src="{{movie.frontpage}}" alt="{{movie.name}}" />
                             </div>
                             {{/hasImage}}
+                            {{^hasImage}}
+                             <img class="card-img-top" src="/movie/{{movie._id}}/image" alt="{{movie.name}}" />
+                            {{/hasImage}}
                             <div class="mb-3">
-                                <label for="frontpage" class="form-label">Front Page</label>
-                                <input type="file" class="form-control" id="frontpage" name="frontpage"/>
+                                <label for="image" class="form-label">Front Page</label>
+                                <input type="file" class="form-control" id="image" name="image"/>
                             </div>
                             <button type="submit" class="btn btn-success"><i class="bi bi-check me-1"></i> Save</button>
                             <a class="btn btne btn-danger" href="{{actionCancel}}"><i class="bi bi-arrow-bar-left me-1"></i> Cancel</a>

@@ -1,5 +1,7 @@
 import express from 'express';
 import { MongoClient, ObjectId } from 'mongodb';
+import multer from 'multer';
+
 
 const router = express.Router();
 export default router;
@@ -9,6 +11,9 @@ const client = new MongoClient('mongodb://localhost:27017');
 const db = client.db('cinema');
 const moviesCollection = db.collection('movies');
 const reviewsCollection = db.collection('reviews');
+
+
+const upload = multer ({dest :'uploads/'});
 
 router.get('/', async (req, res) => {
     let movies = await moviesCollection.find().toArray();
@@ -59,6 +64,7 @@ router.get('/movie/:id/edit', async (req, res) => {
     res.render('new-item', {
         movie,
         isEdit: true,
+        hasImage: movie.frontpage.startsWith('/'),
         ...buildAgeRatingOptions(movie.ageRating), 
         ...buildGenreOptions(movie.genre),
         ...buildPlatformsOptions(movie.platforms),
@@ -67,8 +73,17 @@ router.get('/movie/:id/edit', async (req, res) => {
     });
 });
 
-router.post('/movie', saveMovie);
-router.post('/movie/:id/edit', saveMovie);
+router.post('/movie', upload.single('image'), saveMovie);
+router.post('/movie/:id/edit', upload.single('image'), saveMovie);
+
+router.get('/movie/:id/image',async(req, res) => { 
+    const movieId = parseId(req.params.id);
+    const movie = movieId && await moviesCollection.findOne({ _id: movieId });
+
+    res.download('uploads/' + movie.frontpage);
+
+});
+
 
 
 async function saveMovie(req, res) {
@@ -84,11 +99,11 @@ async function saveMovie(req, res) {
         ageRating: req.body.ageRating || '',
         genre: req.body.genre || '',
         synopsis: req.body.synopsis ? req.body.synopsis.trim() : '',
-        platforms: req.body.platforms.length > 0 ? req.body.platforms.join(', ') : '',
+        platforms: Array.isArray(req.body.platforms) ? req.body.platforms.join(', ') : req.body.platforms,
         duration: req.body.duration ? req.body.duration.trim() : '',
         director: req.body.director ? req.body.director.trim() : '',
         cast: req.body.cast ? req.body.cast.trim() : '',
-        frontpage: req.body.frontpage ? req.body.frontpage.trim() : movie ? movie.frontpage : ''
+        frontpage: req.file ? req.file.filename : movie ? movie.frontpage : ''
     };
 
     if (isEdit) {
