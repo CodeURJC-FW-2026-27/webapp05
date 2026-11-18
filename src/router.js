@@ -19,7 +19,14 @@ const storage = multer.diskStorage({
         cb(null, unique + path.extname(file.originalname));
     }
 });
-const upload = multer({ storage });
+const upload = multer({
+    storage,
+    limits: { fileSize: 5 * 1024 * 1024 }, // máx 5 MB
+    fileFilter: (req, file, cb) => {
+        if (file.mimetype.startsWith('image/')) cb(null, true);
+        else cb(null, false); // ignora archivos que no sean imagen
+    }
+});
 
 const PAGE_SIZE = 6;
 
@@ -139,6 +146,10 @@ async function saveMovie(req, res) {
     const isEdit = Boolean(req.params.id);
     const movieId = isEdit ? parseId(req.params.id) : null;
     const backUrl = isEdit ? `/movie/${req.params.id}` : `/`;
+    const errors = validateMovie(req.body);
+    if (errors.length > 0) {
+        return renderError(res, errors.join(', '), isEdit ? `/movie/${req.params.id}/edit` : '/movie/new', 'Go back');
+    }
 
     const movie = movieId && await moviesCollection.findOne({ _id: movieId });
 
@@ -426,3 +437,42 @@ async function loadMovies() {
 }
 
 await loadMovies();
+// Valida los datos de una película y devuelve un array de errores
+function validateMovie(data) {
+    const errors = [];
+    const title = (data.movieTitle || '').trim();
+    const synopsis = (data.synopsis || '').trim();
+    const director = (data.director || '').trim();
+    const cast = (data.cast || '').trim();
+    const duration = Number(data.duration);
+    const year = (data.movieYear || '').trim();
+
+    if (!title) errors.push('Title is required');
+    else if (title.length > 100) errors.push('Title is too long (max 100 characters)');
+
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(year) || isNaN(Date.parse(year))) {
+        errors.push('Year must be a valid date');
+    } else {
+        const y = Number(year.slice(0, 4));
+        if (y < 1888 || y > 2100) errors.push('Year must be between 1888 and 2100');
+    }
+
+    if (!data.ageRating) errors.push('Age rating is required');
+    if (!data.genre) errors.push('Genre is required');
+
+    if (synopsis.length < 10 || synopsis.length > 1000) {
+        errors.push('Synopsis must be between 10 and 1000 characters');
+    }
+
+    if (!Number.isInteger(duration) || duration < 1 || duration > 600) {
+        errors.push('Duration must be a whole number between 1 and 600 minutes');
+    }
+
+    if (!director) errors.push('Director is required');
+    else if (director.length > 100) errors.push('Director is too long (max 100 characters)');
+
+    if (!cast) errors.push('Cast is required');
+    else if (cast.length > 500) errors.push('Cast is too long (max 500 characters)');
+
+    return errors;
+}
