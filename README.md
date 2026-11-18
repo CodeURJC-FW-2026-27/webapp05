@@ -246,11 +246,11 @@ Enlace: https://youtu.be/9UnqQoXmts4
      - Mejoras en el formulario de la entidad principal
     
   2. 5 commits más significativos:
-     - Transicion entre practicas[90fbb06a0385099a5fe7a17b8b5bfd9ca4c1d26a] :https://github.com/CodeURJC-FW-2026-27/webapp05/commit/90fbb06a0385099a5fe7a17b8b5bfd9ca4c1d26a
-     - Desarollo de la pagina principal[3879b61f23e9bf7e6544b48aee3f3e23e8bb55d2]: https://github.com/CodeURJC-FW-2026-27/webapp05/commit/3879b61f23e9bf7e6544b48aee3f3e23e8bb55d2
-     - Arreglo de botones[f6c8c987e96c8dc9255005481f399c89357aea90]:https://github.com/CodeURJC-FW-2026-27/webapp05/commit/f6c8c987e96c8dc9255005481f399c89357aea90
-     - Paginacion y ajustes de peliculas en la base de datos[61f60a900e63544191d4d06d257f0075ce0516c6]:https://github.com/CodeURJC-FW-2026-27/webapp05/commit/61f60a900e63544191d4d06d257f0075ce0516c6
-     - Retoque formulario de la entidad principal[17bfb6ce0d205ff916355b51554020be42816a6d]:https://github.com/CodeURJC-FW-2026-27/webapp05/commit/17bfb6ce0d205ff916355b51554020be42816a6d
+     - Transición entre practicas: [90fbb06a0385099a5fe7a17b8b5bfd9ca4c1d26a] https://github.com/CodeURJC-FW-2026-27/webapp05/commit/90fbb06a0385099a5fe7a17b8b5bfd9ca4c1d26a
+     - Desarollo de la pagina principal: [3879b61f23e9bf7e6544b48aee3f3e23e8bb55d2] https://github.com/CodeURJC-FW-2026-27/webapp05/commit/3879b61f23e9bf7e6544b48aee3f3e23e8bb55d2
+     - Arreglo de botones: [f6c8c987e96c8dc9255005481f399c89357aea90] https://github.com/CodeURJC-FW-2026-27/webapp05/commit/f6c8c987e96c8dc9255005481f399c89357aea90
+     - Paginación y ajustes de peliculas en la base de datos: [61f60a900e63544191d4d06d257f0075ce0516c6] https://github.com/CodeURJC-FW-2026-27/webapp05/commit/61f60a900e63544191d4d06d257f0075ce0516c6
+     - Retoque formulario de la entidad principal: [17bfb6ce0d205ff916355b51554020be42816a6d] https://github.com/CodeURJC-FW-2026-27/webapp05/commit/17bfb6ce0d205ff916355b51554020be42816a6d
      
   3. Ficheros en los que se ha participado:
      - README (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/README.md)
@@ -258,7 +258,7 @@ Enlace: https://youtu.be/9UnqQoXmts4
      - index (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/views/index.html)
      - New item (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/views/new-item.html)
      - style.css(https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/public/css/styles.css)
-     -.gitignore(https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/.gitignore)
+     - .gitignore(https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/.gitignore)
 
   
 
