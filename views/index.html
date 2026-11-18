@@ -23,9 +23,9 @@
             </div>
         </div>
     </div>
-    {{/movies}}
+                       {{/movies}}
 <!-- Si la lista de películas está vacía, muestra este aviso-->
-    {{^movies}}
+                    {{^movies}}
 <div class="col-12 text-center py-5">
     <div class="alert alert-warning" role="alert">
         No movie has been found.
@@ -33,7 +33,31 @@
 </div>
 {{/movies}}
 </div>
+
+<!-- Paginación -->
+{{#showPagination}}
+<nav class="d-flex justify-content-center align-items-center gap-3 mt-4">
+    {{#hasPrev}}
+        <a href="{{prevUrl}}" class="btn btn-dark boton-rojo">
+            <i class="bi bi-arrow-left"></i> Anterior
+        </a>
+    {{/hasPrev}}
+    {{^hasPrev}}
+        <button class="btn btn-dark" disabled><i class="bi bi-arrow-left"></i> Anterior</button>
+    {{/hasPrev}}
+
+    <span class="text-white">Página {{currentPage}} de {{totalPages}}</span>
+
+    {{#hasNext}}
+        <a href="{{nextUrl}}" class="btn btn-dark boton-rojo">
+            Siguiente <i class="bi bi-arrow-right"></i>
+        </a>
+    {{/hasNext}}
+    {{^hasNext}}
+        <button class="btn btn-dark" disabled>Siguiente <i class="bi bi-arrow-right"></i></button>
+    {{/hasNext}}
+</nav>
+{{/showPagination}}
             </div>
         </section>
         {{> footer}}
-

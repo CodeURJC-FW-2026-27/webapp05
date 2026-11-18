@@ -1,7 +1,7 @@
 import express from 'express';
 import { MongoClient, ObjectId } from 'mongodb';
 import multer from 'multer';
-
+import path from 'path';
 
 const router = express.Router();
 export default router;
@@ -12,51 +12,93 @@ const db = client.db('cinema');
 const moviesCollection = db.collection('movies');
 const reviewsCollection = db.collection('reviews');
 
+const storage = multer.diskStorage({
+    destination: 'uploads/',
+    filename: (req, file, cb) => {
+        const unique = Date.now() + '-' + Math.round(Math.random() * 1e9);
+        cb(null, unique + path.extname(file.originalname));
+    }
+});
+const upload = multer({ storage });
 
-const upload = multer ({dest :'uploads/'});
+const PAGE_SIZE = 6;
+
+// Renderiza el index con paginación
+async function renderMovieList(res, filter, basePath, extraQuery, pageParam) {
+    const total = await moviesCollection.countDocuments(filter);
+    const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+
+    let page = parseInt(pageParam) || 1;
+    page = Math.min(Math.max(page, 1), totalPages);
+
+    const movies = await moviesCollection.find(filter)
+        .sort({ _id: 1 })
+        .skip((page - 1) * PAGE_SIZE)
+        .limit(PAGE_SIZE)
+        .toArray();
+
+    const prefix = extraQuery ? `${basePath}?${extraQuery}&` : `${basePath}?`;
+
+    res.render('index', {
+        movies,
+        showPagination: totalPages > 1,
+        currentPage: page,
+        totalPages,
+        hasPrev: page > 1,
+        hasNext: page < totalPages,
+        prevUrl: `${prefix}page=${page - 1}`,
+        nextUrl: `${prefix}page=${page + 1}`
+    });
+}
 
 router.get('/', async (req, res) => {
-    let movies = await moviesCollection.find().toArray();
-    res.render('index', { movies });
+    await renderMovieList(res, {}, '/', '', req.query.page);
 });
 
 //Barra de búsqueda
 router.get('/search', async (req, res) => {
     const searchTerm = req.query.title || '';
-    const movies = await moviesCollection.find({
-        title: { $regex: searchTerm, $options: 'i'}
-    }).toArray();
-    res.render('index', { movies });
+    const safeTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    await renderMovieList(
+        res,
+        { title: { $regex: safeTerm, $options: 'i' } },
+        '/search',
+        `title=${encodeURIComponent(searchTerm)}`,
+        req.query.page
+    );
 });
 
 //Filtro por género
 router.get('/genre/:genreName', async (req, res) => {
     const genre = req.params.genreName;
-    const movies = await moviesCollection.find({ genre: genre }).toArray();
-    res.render('index', { movies });
+    await renderMovieList(
+        res,
+        { genre: genre },
+        `/genre/${encodeURIComponent(genre)}`,
+        '',
+        req.query.page
+    );
 });
 
-// 1. Ruta para mostrar el formulario de crear nueva película (¡Debe ir ANTES de /movie/:id!)
+// Formulario de crear nueva película (debe ir ANTES de /movie/:id)
 router.get('/movie/new', (req, res) => {
-    res.render('new-item', { 
-        movie: {}, 
-        isEdit: true,
-        ...buildAgeRatingOptions(), 
+    res.render('new-item', {
+        movie: {},
+        isEdit: false,
+        ...buildAgeRatingOptions(),
         ...buildGenreOptions(),
         ...buildPlatformsOptions(),
-        action: '/movie', 
-        actionCancel: '/' });
+        action: '/movie',
+        actionCancel: '/'
+    });
 });
-
-
 
 // Delete movie (Main Entity)
 router.post('/movie/:id/delete', async (req, res) => {
     const movieId = parseId(req.params.id);
-    if(!movieId) return renderError(res, 'Invalid movie ID', '/', 'Return to main page');
-    
-    await reviewsCollection.deleteMany({ movieId: movieId });
+    if (!movieId) return renderError(res, 'Invalid movie ID', '/', 'Return to main page');
 
+    await reviewsCollection.deleteMany({ movieId: movieId });
     await moviesCollection.deleteOne({ _id: movieId });
     renderMessage(res, 'Movie deleted succesfully', '/', 'Return to main page');
 });
@@ -71,24 +113,24 @@ router.get('/movie/:id/edit', async (req, res) => {
     res.render('new-item', {
         movie,
         isEdit: true,
-        hasImage: movie.frontpage.startsWith('/'),
-        ...buildAgeRatingOptions(movie.ageRating), 
+        hasImage: Boolean(movie.frontpage),
+        ...buildAgeRatingOptions(movie.ageRating),
         ...buildGenreOptions(movie.genre),
         ...buildPlatformsOptions(movie.platforms),
         action: `/movie/${movie._id}/edit`,
-        cancelAction: `/movie/${movie._id}`
+        actionCancel: `/movie/${movie._id}`
     });
 });
 
-router.post('/movie', upload.single('image'), saveMovie);
-router.post('/movie/:id/edit', upload.single('image'), saveMovie);
+router.post('/movie', upload.any(), saveMovie);
+router.post('/movie/:id/edit', upload.any(), saveMovie);
 
-router.get('/movie/:id/image',async(req, res) => { 
+router.get('/movie/:id/image', async (req, res) => {
     const movieId = parseId(req.params.id);
     const movie = movieId && await moviesCollection.findOne({ _id: movieId });
+    if (!movie) return renderError(res, 'Movie not found', '/', 'Return to main page');
 
-    res.download('uploads/' + movie.frontpage);
-
+    res.download('.' + movie.frontpage);
 });
 
 
@@ -98,7 +140,7 @@ async function saveMovie(req, res) {
     const movieId = isEdit ? parseId(req.params.id) : null;
     const backUrl = isEdit ? `/movie/${req.params.id}` : `/`;
 
-    const movie = movieId && await moviesCollection.findOne({ _id: movieId});
+    const movie = movieId && await moviesCollection.findOne({ _id: movieId });
 
     const theMovie = {
         title: req.body.movieTitle ? req.body.movieTitle.trim() : '',
@@ -106,22 +148,21 @@ async function saveMovie(req, res) {
         ageRating: req.body.ageRating || '',
         genre: req.body.genre || '',
         synopsis: req.body.synopsis ? req.body.synopsis.trim() : '',
-        platforms: Array.isArray(req.body.platforms) ? req.body.platforms.join(', ') : req.body.platforms,
+        platforms: Array.isArray(req.body.platforms) ? req.body.platforms.join(', ') : (req.body.platforms || ''),
         duration: req.body.duration ? req.body.duration.trim() : '',
         director: req.body.director ? req.body.director.trim() : '',
         cast: req.body.cast ? req.body.cast.trim() : '',
-        frontpage: req.file ? req.file.filename : movie ? movie.frontpage : ''
+      frontpage: (req.files && req.files.length > 0) ? `/uploads/${req.files[0].filename}` : (movie ? movie.frontpage : '')
     };
 
     if (isEdit) {
-        await moviesCollection.updateOne({ _id: movieId }, { $set: theMovie});
+        await moviesCollection.updateOne({ _id: movieId }, { $set: theMovie });
     } else {
         await moviesCollection.insertOne({ ...theMovie, createdAt: new Date() });
-    } 
-    
-    renderMessage(res, isEdit ? 'Movie updated' : 'Movie created', backUrl, 'Go back to movie page');
+    }
 
-} 
+    renderMessage(res, isEdit ? 'Movie updated' : 'Movie created', backUrl, 'Go back to movie page');
+}
 
 
 
@@ -368,18 +409,6 @@ async function loadMovies() {
             synopsis: 'Three friends wake up after a bachelor party in Las Vegas with no memory of the night and the groom missing.'
         },
         {
-            title: 'Gladiator',
-            frontpage: '/20149073.jpg',
-            genre: 'Action',
-            duration: 155,
-            year: '2000-05-05',
-            ageRating: 'NC-17',
-            director: 'Ridley Scott',
-            platforms: 'Prime Video, Movistar+',
-            cast: 'Russell Crowe, Joaquin Phoenix, Connie Nielsen',
-            synopsis: 'A betrayed Roman general seeks revenge against the corrupt emperor who murdered his family.'
-        },
-        {
             title: 'Avengers End Game',
             frontpage: '/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_FMjpg_UX1000_.jpg',
             genre: 'Action',
@@ -391,30 +420,6 @@ async function loadMovies() {
             cast: 'Robert Downey Jr., Chris Evans, Scarlett Johansson',
             synopsis: 'The Avengers assemble once more to reverse the damage caused by Thanos.'
         },
-        {
-            title: 'Obsession',
-            frontpage: '/obsession__236x336.jpg',
-            genre: 'Terror',
-            duration: 108,
-            year: '2026-05-15',
-            ageRating: 'Restricted',
-            director: 'Curry Barker',
-            platforms: 'Cinemas',
-            cast: 'Michael Johnston, Inde Navarrette, Cooper Tomlinson',
-            synopsis: 'A man\'s unhealthy obsession with a woman leads him to extreme and dangerous measures.'
-        },
-        {
-            title: 'Padre No Hay Mas Que Uno 5',
-            frontpage: '/padrenohaymasquno.jpg',
-            genre: 'Comedy',
-            duration: 97,
-            year: '2024-07-26',
-            ageRating: 'General audiences',
-            director: 'Santiago Segura',
-            platforms: 'Prime Video',
-            cast: 'Santiago Segura, Toni Acosta, Martita de Graná',
-            synopsis: 'A chaotic family faces yet another round of hilarious situations during the summer holidays.'
-        }
     ];
 
     await moviesCollection.insertMany(movies);
