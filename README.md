@@ -260,6 +260,29 @@ Enlace: https://youtu.be/9UnqQoXmts4
      - style.css(https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/public/css/styles.css)
      - .gitignore(https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/.gitignore)
 
+- Alejandro Bodas Navidad:
+  1. Tareas realizadas:
+     - Desarrollo funcional del botón de editar de la entidad principal.
+     - Desarrollo funcional del botón borrar de la entidad principal.
+     - Desarrollo funcional de la barra de búsqueda.
+     - Desarrollo funcional del filtro por género.
+     - Desarrollo de la entidad principal de la página secundaria.
+       
+    
+  2. 5 commits más significativos:
+     - Botón borrar de la entidad principal: [b2c0ee2be040f4fa86daf723e0c6d9000941f579] https://github.com/CodeURJC-FW-2026-27/webapp05/commit/b2c0ee2be040f4fa86daf723e0c6d9000941f579
+     - Botón editar de la entidad principal: [b2bb0aeeee8a26b0fe95247273a0b1b0d16af6fd] https://github.com/CodeURJC-FW-2026-27/webapp05/commit/b2bb0aeeee8a26b0fe95247273a0b1b0d16af6fd
+     - Filtro funcional: [b37ca1261e9e01ed79f029002630bc1639a55ee5] https://github.com/CodeURJC-FW-2026-27/webapp05/commit/b37ca1261e9e01ed79f029002630bc1639a55ee5
+     - Barra de búsqueda: [fe9895eb5123496286a8384e34b51a6b08a6043f] https://github.com/CodeURJC-FW-2026-27/webapp05/commit/fe9895eb5123496286a8384e34b51a6b08a6043f y [c72ffbb7a3f9722e16f7838d7a11a34fd1a14110] https://github.com/CodeURJC-FW-2026-27/webapp05/commit/c72ffbb7a3f9722e16f7838d7a11a34fd1a14110
+     - Refactorización de rutas de creación/edición de películas y corrección del selector múltiple de plataformas: [555ee8dee8d1e4b3abba9fd56d82372d8f5541f0] https://github.com/CodeURJC-FW-2026-27/webapp05/commit/555ee8dee8d1e4b3abba9fd56d82372d8f5541f0
+     
+    
+  3. Ficheros en los que se ha participado:
+     - README (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/README.md)
+     - router.js (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/src/router.js)
+     - Header  (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/views/partials/header.html)
+     - SecondaryPage (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/startbootstrap-shop-homepage-gh-pages/secondarypage.html)
+     - Index (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/views/index.html)
   
 
 
