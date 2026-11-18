@@ -188,7 +188,7 @@ La carpeta `uploads` guarda las imágenes subidas y no se sube al repositorio.
 - `.gitignore`: excluye `node_modules` y `uploads`.
          
 ### Video demostración
-
+Enlace: https://youtu.be/9UnqQoXmts4
 ### Participación de los miembros:
 - Mario Gastelut Chorro:
   1. Tareas realizadas:
