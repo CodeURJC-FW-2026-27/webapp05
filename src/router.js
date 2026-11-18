@@ -335,12 +335,12 @@ function buildGenreOptions(selected) {
 
 //Builds an object with genre options for the movie form
 function buildPlatformsOptions(selected) {
-    let aSelected = selected ? selected.split(","):[];
+    let aSelected = selected ? selected.split(", "):[];
 
     const platformsOptions = ["Netflix","HBO","Prime Video","Disney+", "Movistar+", "Max", "Paramount+"].map(value => ({
         value,
         label: `${value}`,
-        selectedPlatform: aSelected.includes(value.trim())
+        selectedPlatform: aSelected.includes(value)
     }));
     return { platformsOptions, noPlatforms: !selected };
 }
