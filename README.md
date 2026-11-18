@@ -212,4 +212,32 @@ Enlace: https://youtu.be/9UnqQoXmts4
       - review_form (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/views/review_form.html)
       - README (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/README.md)
 
+- Marcos Calero Pelayo:
+  1. Tareas realizadas:
+     - Desarrollo funcional del formulario de películas (entidad principal), utilizando mustache-express
+     - Desarrollo de la base de datos de la película
+     - Desarrollo de los módulos de cabecera y pie de página
+     - Desarrollo de la página de edición de la película
+     - Desarrollo del router para la nueva película
+     - Gestión de la subida de imágenes
+    
+  2. 5 commits más significativos:
+     - Adaptación de página de nuevo elemento y de detalle: https://github.com/CodeURJC-FW-2026-27/webapp05/commit/9c7d4bf933e85512f441e28187cbfa6dfc9c4798
+     - Creacion modulo header y footer: https://github.com/CodeURJC-FW-2026-27/webapp05/commit/55c53bc3bf47b156c185ea9e8bb78b082d5f8ddf
+     - Arreglo edición de películas: https://github.com/CodeURJC-FW-2026-27/webapp05/commit/260857ecc49273a9504086da2a58733224df5911
+     - Ajustes de navegación creación edición de película: https://github.com/CodeURJC-FW-2026-27/webapp05/commit/8e472033206637a9ac8a3a05615096e30e3764b1
+     - Página de creación de nuevas películas:https://github.com/CodeURJC-FW-2026-27/webapp05/commit/19510f0673e84a932a3c6bcae9d1276d76ffb03f
+     - Subida y mostrado de imágenes: https://github.com/CodeURJC-FW-2026-27/webapp05/commit/0d9af0dc6d46b80d862329ee0eff6eddb8cfd9a9
+    
+  3. Ficheros en los que se ha participado:
+     - README (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/README.md)
+     - router.js (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/src/router.js)
+     - FOOTER (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/views/partials/footer.html)
+     - Header  (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/views/partials/header.html)
+     - New item (https://github.com/CodeURJC-FW-2026-27/webapp05/blob/main/views/new-item.html)
+ 
+
+  
+
+
 
